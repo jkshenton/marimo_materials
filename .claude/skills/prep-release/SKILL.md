@@ -1,6 +1,6 @@
 # Release Preparation
 
-Prepare a new wigglystuff release. Follow these steps:
+Prepare a new marimo_materials release. Follow these steps:
 
 ## Instructions
 
@@ -14,13 +14,13 @@ Prepare a new wigglystuff release. Follow these steps:
    - Look at the git diff against `main` to determine what changed
 
 4. **Update all documentation locations** for any new widgets:
-   - `mkdocs/reference/<widget-name>.md` — create a reference doc following the pattern in existing reference pages (use `::: wigglystuff.module.ClassName` mkdocstrings directive + a synced traitlets table)
+   - `mkdocs/reference/<widget-name>.md` — create a reference doc following the pattern in existing reference pages (use `::: marimo_materials.module.ClassName` mkdocstrings directive + a synced traitlets table)
    - `mkdocs.yml` — add the widget to the `nav` Reference section
    - `mkdocs/index.md` — add to the appropriate gallery section (main gallery or 3rd party gallery)
    - `readme.md` — add to the appropriate gallery table (main gallery or 3rd party table)
    - `mkdocs/llms.txt` — add a one-line entry in the appropriate section
    - `CLAUDE.md` — add a row to the quick reference table
-   - `wigglystuff/__init__.py` — verify the widget is imported and listed in `__all__`
+   - `marimo_materials/__init__.py` — verify the widget is imported and listed in `__all__`
 
 5. **For 3rd party widgets** (those requiring non-core dependencies like neo4j, torch, wandb):
    - Place them in the "3rd party widgets" section of the galleries (not the main gallery)

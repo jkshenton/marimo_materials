@@ -1,6 +1,6 @@
 # Agents
 
-`wigglystuff` ships a small roster of AnyWidget "agents" that surface different
+`marimo_materials` ships a small roster of AnyWidget "agents" that surface different
 input modalities (sliders, speech, paint, etc.) across notebook runtimes. This
 page is a quick lookup so you can see what exists and which traitlets each agent
 syncs back to Python.
@@ -9,33 +9,7 @@ syncs back to Python.
 
 | Agent | Module/Class | Core traitlets | One-liner |
 | --- | --- | --- | --- |
-| AltairWidget | `wigglystuff.altair_widget.AltairWidget` | `spec`, `width`, `height` | Flicker-free Altair chart with smooth data updates |
-| Slider2D | `wigglystuff.slider2d.Slider2D` | `x`, `y`, `x_bounds`, `y_bounds`, `width`, `height` | 2D pointer for coupled parameters |
-| ChartPuck | `wigglystuff.chart_puck.ChartPuck` | `x`, `y`, `x_bounds`, `y_bounds`, `axes_pixel_bounds`, `width`, `height`, `chart_base64`, `puck_radius`, `puck_color`, `throttle` | Draggable puck overlay for matplotlib charts |
-| ChartSelect | `wigglystuff.chart_select.ChartSelect` | `mode`, `selection`, `has_selection`, `x_bounds`, `y_bounds`, `axes_pixel_bounds`, `width`, `height`, `chart_base64`, `selection_color`, `selection_opacity` | Box/lasso selection on matplotlib charts |
-| Matrix | `wigglystuff.matrix.Matrix` | `matrix`, `rows`, `cols`, `min_value`, `max_value`, `step`, `mirror` | Spreadsheet-like numeric editor |
-| TangleSlider | `wigglystuff.tangle.TangleSlider` | `amount`, `min_value`, `max_value`, `step`, `pixels_per_step` | Inline slider ala Bret Victor |
-| TangleChoice | `wigglystuff.tangle.TangleChoice` | `choice`, `choices` | Inline toggle among labels |
-| TangleSelect | `wigglystuff.tangle.TangleSelect` | `choice`, `choices` | Dropdown version of the above |
-| SortableList | `wigglystuff.sortable_list.SortableList` | `value`, `addable`, `removable`, `editable`, `label` | Drag-and-drop ordering with optional CRUD |
-| CopyToClipboard | `wigglystuff.copy_to_clipboard.CopyToClipboard` | `text_to_copy` | Copies the payload into the OS clipboard |
-| ColorPicker | `wigglystuff.color_picker.ColorPicker` | `color` | Native color input with `rgb` helper |
-| EdgeDraw | `wigglystuff.edge_draw.EdgeDraw` | `names`, `links`, `directed`, `width`, `height` | Sketch node/link diagrams and query adjacency |
-| Paint | `wigglystuff.paint.Paint` | `base64`, `width`, `height`, `store_background` | MS-Paint-style canvas with PIL helpers |
-| ThreeWidget | `wigglystuff.three_widget.ThreeWidget` | `data`, `width`, `height`, `show_grid`, `show_axes`, `dark_mode`, `axis_labels`, `animate_updates`, `animation_duration_ms` | 3D scatter plot for point clouds |
-| WebcamCapture | `wigglystuff.webcam_capture.WebcamCapture` | `image_base64`, `capturing`, `interval_ms`, `facing_mode` | Webcam preview with snapshot capture |
-| GamepadWidget | `wigglystuff.gamepad.GamepadWidget` | `axes`, `current_button_press`, `dpad_*`, `current_timestamp` | Streams browser Gamepad API events |
-| KeystrokeWidget | `wigglystuff.keystroke.KeystrokeWidget` | `last_key` | Captures the latest keypress w/ modifiers |
-| WebkitSpeechToTextWidget | `wigglystuff.talk.WebkitSpeechToTextWidget` | `transcript`, `listening`, `trigger_listen` | WebKit speech recognition bridge |
-| DriverTour | `wigglystuff.driver_tour.DriverTour` | `steps`, `auto_start`, `show_progress`, `active`, `current_step` | Guided product tours via Driver.js |
-| CellTour | `wigglystuff.cell_tour.CellTour` | `steps`, `auto_start`, `show_progress`, `active`, `current_step` | Simplified cell-based tours for marimo |
-| TextCompare | `wigglystuff.text_compare.TextCompare` | `text_a`, `text_b`, `matches`, `selected_match`, `min_match_words` | Side-by-side text diff with match highlighting |
-| EnvConfig | `wigglystuff.env_config.EnvConfig` | `variables`, `all_valid` | Environment variable config with validation |
-| ModuleTreeWidget | `wigglystuff.module_tree.ModuleTreeWidget` | `tree`, `initial_expand_depth` | Interactive tree viewer for PyTorch nn.Module |
-| WandbChart | `wigglystuff.wandb_chart.WandbChart` | `api_key`, `entity`, `project`, `key`, `poll_seconds`, `smoothing_kind`, `smoothing_param`, `show_slider`, `width`, `height` | Live line chart that polls wandb for metric data with smoothing |
-| Neo4jWidget | `wigglystuff.neo4j_widget.Neo4jWidget` | `nodes`, `relationships`, `schema`, `error`, `query_running`, `selected_nodes`, `selected_relationships`, `width`, `height` | Interactive Neo4j graph explorer with Cypher query input |
-| ScatterWidget | re-exported from [`drawdata`](https://github.com/koaning/drawdata) | `data`, `brushsize`, `width`, `height`, `n_classes` | Paint multi-class 2D scatter data with brush |
-| DiffViewer | `wigglystuff.diff_viewer.DiffViewer` | `old_name`, `old_contents`, `new_name`, `new_contents`, `diff_style`, `expand_unchanged` | Rich file diff viewer with split/unified modes |
+| AltairWidget | `marimo_materials.altair_widget.AltairWidget` | `spec`, `width`, `height` | Flicker-free Altair chart with smooth data updates |
 
 ## Patterns to remember
 
@@ -46,7 +20,7 @@ syncs back to Python.
 - Several widgets expose helper methods (e.g., `Paint.get_pil()`,
   `EdgeDraw.get_adjacency_matrix()`)—lean on those rather than re-implementing
   conversions.
-- Check `wigglystuff/__init__.py` for the names that are re-exported at the
+- Check `marimo_materials/__init__.py` for the names that are re-exported at the
   package root so you can keep imports consistent.
 - The repo standardizes on [`uv`](https://github.com/astral-sh/uv) for Python
   workflows (`uv pip install -e .` etc.) and the standard library's `pathlib`

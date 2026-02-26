@@ -1,8 +1,8 @@
-site_name: wigglystuff
+site_name: marimo_materials
 site_description: Creative AnyWidgets for notebooks
-site_url: https://wigglystuff.dev
-repo_url: https://github.com/koaning/wigglystuff
-repo_name: koaning/wigglystuff
+site_url: https://marimo_materials.dev
+repo_url: https://github.com/jkshenton/marimo_materials
+repo_name: jkshenton/marimo_materials
 docs_dir: mkdocs
 site_dir: site
 theme:
@@ -106,7 +106,7 @@ extra_css:
 extra:
   social:
     - icon: fontawesome/brands/github
-      link: https://github.com/vdamario/wigglystuff
+      link: https://github.com/vdamario/marimo_materials
       name: GitHub
     - icon: material/notebook
       link: https://marimo.io/gallery

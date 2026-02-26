@@ -1,6 +1,6 @@
 ---
 name: Bug Report
-about: Report a bug in wigglystuff
+about: Report a bug in marimo_materials
 labels: bug
 ---
 

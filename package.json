@@ -1,9 +1,9 @@
 {
-  "name": "wigglystuff",
+  "name": "marimo_materials",
   "scripts": {
-    "dev-copy-btn": "./node_modules/.bin/esbuild js/copybutton/widget.js --bundle --outfile=wigglystuff/static/copybutton.js --format=esm --watch --minify",
-    "build-three-widget": "./node_modules/.bin/esbuild js/three-widget/widget.js --bundle --outfile=wigglystuff/static/three-widget.js --format=esm --minify",
-    "dev-three-widget": "./node_modules/.bin/esbuild js/three-widget/widget.js --bundle --outfile=wigglystuff/static/three-widget.js --format=esm --watch --minify"
+    "dev-copy-btn": "./node_modules/.bin/esbuild js/copybutton/widget.js --bundle --outfile=marimo_materials/static/copybutton.js --format=esm --watch --minify",
+    "build-three-widget": "./node_modules/.bin/esbuild js/three-widget/widget.js --bundle --outfile=marimo_materials/static/three-widget.js --format=esm --minify",
+    "dev-three-widget": "./node_modules/.bin/esbuild js/three-widget/widget.js --bundle --outfile=marimo_materials/static/three-widget.js --format=esm --watch --minify"
   },
   "dependencies": {
     "@anywidget/react": "^0.1.0",

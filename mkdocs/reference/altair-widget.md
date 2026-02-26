@@ -1,6 +1,6 @@
 # AltairWidget API
 
-::: wigglystuff.altair_widget.AltairWidget
+::: marimo_materials.altair_widget.AltairWidget
 
 ## Synced traitlets
 

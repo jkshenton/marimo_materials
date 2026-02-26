@@ -1,11 +1,11 @@
 [project]
-name = "wigglystuff"
-version = "0.2.30"
+name = "marimo_materials"
+version = "0.1.0"
 description = "Collection of Anywidget Widgets"
 readme = "README.md"
 requires-python = ">=3.10"
 license = { file = "LICENSE" }
-authors = [{ name = "Vincent D. Warmerdam" }]
+authors = [{ name = "Kane Shenton" }]
 classifiers = [
   "Intended Audience :: Developers",
   "Intended Audience :: Science/Research",
@@ -19,17 +19,13 @@ dependencies = [
     "numpy",
     "pillow",
     "python-dotenv>=1.2.1",
+    "weas-widget>=0.2.6",
 ]
 
 [project.optional-dependencies]
-wandb = [
-    "wandb>=0.15.0",
-]
-torch = [
-    "torch>=2.10.0",
-]
-neo4j = [
-    "neo4j>=5.0.0",
+crystal = [
+    "weas-widget>=0.2.0",
+    "ase>=3.22",
 ]
 test = [
     "pytest>=8.3.3",
@@ -65,7 +61,10 @@ build-backend = "hatchling.build"
 
 [tool.hatch.build]
 only-packages = true
-artifacts = ["wigglystuff/static/*"]
+artifacts = ["marimo_materials/static/*"]
 
 [tool.marimo.runtime]
 auto_instantiate = true
+
+[tool.uv.sources]
+weas-widget = { path = "../weas-widget", editable = true }

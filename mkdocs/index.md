@@ -1,5 +1,5 @@
 ---
-title: wigglystuff
+title: marimo_materials
 hide:
   - toc
 ---
@@ -10,20 +10,20 @@ hide:
 
 ## These docs are special 
 
-The documentation for wigglystuff is designed for humans (via hosted marimo notebooks) and robots (via markdown pages to quickly paste into prompts). The reasoning behind this is explained in more detail in [this YT video](https://youtu.be/IgyRh2FuoAk). Follow the links in each example below to find the resources that you're looking for. 
+The documentation for marimo_materials is designed for humans (via hosted marimo notebooks) and robots (via markdown pages to quickly paste into prompts). The reasoning behind this is explained in more detail in [this YT video](https://youtu.be/IgyRh2FuoAk). Follow the links in each example below to find the resources that you're looking for. 
 
-## Install wigglystuff
+## Install marimo_materials
 
 === "uv"
 
     ```bash
-    uv pip install wigglystuff
+    uv pip install marimo_materials
     ```
 
 === "pip"
 
     ```bash
-    pip install wigglystuff
+    pip install marimo_materials
     ```
 
 
@@ -156,7 +156,7 @@ Each widget page embeds a marimo-powered html-wasm export and links back to the 
 
 ## 3rd party widgets
 
-These widgets depend on 3rd party packages. They still ship with wigglystuff but have demos hosted on [molab](https://molab.marimo.io) because many of the dependencies are not compatible with WASM.
+These widgets depend on 3rd party packages. They still ship with marimo_materials but have demos hosted on [molab](https://molab.marimo.io) because many of the dependencies are not compatible with WASM.
 
 <div class="widget-gallery">
 <div class="gallery-item">
@@ -176,7 +176,7 @@ These widgets depend on 3rd party packages. They still ship with wigglystuff but
 </div>
 <div class="gallery-item">
 <div class="gallery-title">AltairWidget</div>
-<a href="https://molab.marimo.io/github/koaning/wigglystuff/blob/main/demos/altairwidget.py" class="gallery-img"><img src="assets/gallery/altairwidget.png" alt="AltairWidget"></a>
-<div class="gallery-links"><a href="https://molab.marimo.io/github/koaning/wigglystuff/blob/main/demos/altairwidget.py">Demo</a><a href="reference/altair-widget/">API</a><a href="reference/altair-widget.md">MD</a></div>
+<a href="https://molab.marimo.io/github/koaning/marimo_materials/blob/main/demos/altairwidget.py" class="gallery-img"><img src="assets/gallery/altairwidget.png" alt="AltairWidget"></a>
+<div class="gallery-links"><a href="https://molab.marimo.io/github/koaning/marimo_materials/blob/main/demos/altairwidget.py">Demo</a><a href="reference/altair-widget/">API</a><a href="reference/altair-widget.md">MD</a></div>
 </div>
 </div>

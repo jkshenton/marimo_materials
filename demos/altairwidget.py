@@ -5,7 +5,7 @@
 #     "marimo>=0.19.11",
 #     "numpy==2.4.2",
 #     "pandas==3.0.1",
-#     "wigglystuff==0.2.30",
+#     "marimo_materials==0.2.30",
 # ]
 # ///
 
@@ -24,7 +24,7 @@ def _():
 
 @app.cell
 def _():
-    from wigglystuff import AltairWidget
+    from marimo_materials import AltairWidget
 
     widget = AltairWidget(width=500, height=400)
     return (widget,)

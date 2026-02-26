@@ -288,7 +288,7 @@ class _HtmlToMarkdown(HTMLParser):
         pre_text = pre_text.rstrip("\n")
         # Prepend import statement to examples code block
         if self._add_import_to_next_code and self._widget_name:
-            import_line = f"from wigglystuff import {self._widget_name}\n\n"
+            import_line = f"from marimo_materials import {self._widget_name}\n\n"
             pre_text = import_line + pre_text
             self._add_import_to_next_code = False
         fence = f"```{self._pre_lang or ''}".rstrip()

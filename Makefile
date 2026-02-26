@@ -26,41 +26,41 @@ pypi: clean
 	uv publish
 
 js-edgedraw:
-	./esbuild --watch=forever --bundle --format=esm --outfile=wigglystuff/static/edgedraw.js js/edgedraw.js
+	./esbuild --watch=forever --bundle --format=esm --outfile=marimo_materials/static/edgedraw.js js/edgedraw.js
 
 js-gamepad:
-	./esbuild --bundle --format=esm --outfile=wigglystuff/static/gamepad-widget.js js/gamepad/widget.js
+	./esbuild --bundle --format=esm --outfile=marimo_materials/static/gamepad-widget.js js/gamepad/widget.js
 
 js-keystroke:
 	# build the keyboard shortcut widget bundle
-	./esbuild --bundle --format=esm --outfile=wigglystuff/static/keystroke-widget.js js/keystroke/widget.js
+	./esbuild --bundle --format=esm --outfile=marimo_materials/static/keystroke-widget.js js/keystroke/widget.js
 
 js-copybutton:
-	./esbuild --bundle --format=esm --outfile=wigglystuff/static/copybutton.js js/copybutton/widget.tsx
+	./esbuild --bundle --format=esm --outfile=marimo_materials/static/copybutton.js js/copybutton/widget.tsx
 
 js-talk:
-	./esbuild --bundle --format=esm --outfile=wigglystuff/static/talk-widget.js js/talk/widget.js
+	./esbuild --bundle --format=esm --outfile=marimo_materials/static/talk-widget.js js/talk/widget.js
 
 js-driver-tour:
-	cp js/driver-tour/styles.css wigglystuff/static/driver-tour.css
-	./esbuild --bundle --format=esm --loader:.css=text --outfile=wigglystuff/static/driver-tour.js js/driver-tour/widget.js
+	cp js/driver-tour/styles.css marimo_materials/static/driver-tour.css
+	./esbuild --bundle --format=esm --loader:.css=text --outfile=marimo_materials/static/driver-tour.js js/driver-tour/widget.js
 
 js-paint:
-	./node_modules/.bin/tailwindcss -i ./js/paint/styles.css -o ./wigglystuff/static/paint.css
-	./node_modules/.bin/esbuild js/paint/widget.tsx --bundle --format=esm --outfile=wigglystuff/static/paint.js --minify
+	./node_modules/.bin/tailwindcss -i ./js/paint/styles.css -o ./marimo_materials/static/paint.css
+	./node_modules/.bin/esbuild js/paint/widget.tsx --bundle --format=esm --outfile=marimo_materials/static/paint.js --minify
 
 js-pulsar-chart:
-	./esbuild --bundle --format=esm --outfile=wigglystuff/static/pulsar-chart.js js/pulsar-chart/widget.js
+	./esbuild --bundle --format=esm --outfile=marimo_materials/static/pulsar-chart.js js/pulsar-chart/widget.js
 
 js-neo4j-widget:
-	./esbuild --bundle --format=esm --outfile=wigglystuff/static/neo4j-widget.js js/neo4j-widget/widget.js
+	./esbuild --bundle --format=esm --outfile=marimo_materials/static/neo4j-widget.js js/neo4j-widget/widget.js
 
 js-diff-viewer:
-	./esbuild --bundle --format=esm --outfile=wigglystuff/static/diff-viewer.js js/diff-viewer/widget.js --minify
+	./esbuild --bundle --format=esm --outfile=marimo_materials/static/diff-viewer.js js/diff-viewer/widget.js --minify
 
 js-scatter-widget:
-	cp js/scatter-widget/styles.css wigglystuff/static/scatter-widget.css
-	./esbuild --bundle --format=esm --outfile=wigglystuff/static/scatter-widget.js js/scatter-widget/widget.js
+	cp js/scatter-widget/styles.css marimo_materials/static/scatter-widget.css
+	./esbuild --bundle --format=esm --outfile=marimo_materials/static/scatter-widget.js js/scatter-widget/widget.js
 
 clean:
 	rm -rf .ipynb_checkpoints build dist drawdata.egg-info
