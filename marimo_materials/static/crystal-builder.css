@@ -1,0 +1,153 @@
+/* Shared styles for ASE crystal builder widgets (bulk, surface, nanoparticle, molecule) */
+
+.cb-root {
+  font-family: system-ui, sans-serif;
+  max-width: 500px;
+  color-scheme: light dark;
+}
+
+.cb-title {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #999;
+  margin-bottom: 12px;
+}
+
+.cb-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.cb-field {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.cb-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #999;
+}
+
+.cb-input,
+.cb-select {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 5px 8px;
+  font-size: 13px;
+  background: #fff;
+  color: inherit;
+  outline: none;
+  transition: border-color 0.12s;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.cb-input:focus,
+.cb-select:focus {
+  border-color: #5b8dee;
+}
+
+.cb-input:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+  background: #f0f0f0;
+}
+
+.cb-input--sm {
+  width: 52px;
+  text-align: center;
+  padding: 5px 4px;
+}
+
+.cb-row {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
+.cb-checkbox-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  margin: 4px 0 8px;
+  color: #444;
+}
+
+.cb-checkbox-row input[type="checkbox"] {
+  width: 14px;
+  height: 14px;
+  accent-color: #5b8dee;
+  cursor: pointer;
+}
+
+.cb-status {
+  font-size: 12px;
+  padding: 5px 8px;
+  border-radius: 4px;
+  margin-top: 6px;
+  display: none;
+}
+
+.cb-status--visible {
+  display: block;
+}
+
+.cb-status--ok {
+  background: #ebfbee;
+  color: #2f9e44;
+}
+
+.cb-status--error {
+  background: #fff5f5;
+  color: #c92a2a;
+}
+
+/* Dark mode */
+@media (prefers-color-scheme: dark) {
+  .cb-input,
+  .cb-select {
+    background: #1e1e2e;
+    border-color: #45475a;
+    color: #cdd6f4;
+  }
+
+  .cb-input:focus,
+  .cb-select:focus {
+    border-color: #89b4fa;
+  }
+
+  .cb-input:disabled {
+    background: #181825;
+  }
+
+  .cb-label {
+    color: #7f849c;
+  }
+
+  .cb-title {
+    color: #7f849c;
+  }
+
+  .cb-checkbox-row {
+    color: #cdd6f4;
+  }
+
+  .cb-status--ok {
+    background: #1a2e1c;
+    color: #69db7c;
+  }
+
+  .cb-status--error {
+    background: #2e1a1a;
+    color: #fb8072;
+  }
+}

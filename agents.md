@@ -10,6 +10,11 @@ syncs back to Python.
 | Agent | Module/Class | Core traitlets | One-liner |
 | --- | --- | --- | --- |
 | AltairWidget | `marimo_materials.altair_widget.AltairWidget` | `spec`, `width`, `height` | Flicker-free Altair chart with smooth data updates |
+| BulkBuilderWidget | `marimo_materials.crystal_builder.BulkBuilderWidget` | `symbol`, `crystalstructure`, `cubic`, `supercell`, `error`, `n_atoms` | Build bulk crystals via `ase.build.bulk`; `.atoms` → `ase.Atoms` |
+| SurfaceBuilderWidget | `marimo_materials.crystal_builder.SurfaceBuilderWidget` | `symbol`, `facet`, `layers`, `vacuum`, `supercell_a`, `supercell_b`, `orthogonal`, `error`, `n_atoms` | Build surface slabs via ASE facet builders; `.atoms` → `ase.Atoms` |
+| NanoparticleBuilderWidget | `marimo_materials.crystal_builder.NanoparticleBuilderWidget` | `symbol`, `shape`, `noshells`, `p`, `q`, `r`, `oct_length`, `cutoff`, `error`, `n_atoms` | Build nanoparticles (Icosahedron/Decahedron/Octahedron) via `ase.cluster`; `.atoms` → `ase.Atoms` |
+| MoleculeBuilderWidget | `marimo_materials.crystal_builder.MoleculeBuilderWidget` | `name`, `vacuum`, `error`, `n_atoms` | Build gas-phase molecules from ASE's G2 database; `.atoms` → `ase.Atoms` |
+| CrystalDownloadWidget | `marimo_materials.crystal_download.CrystalDownloadWidget` | `format`, `formula`, `n_atoms`, `filename`, `file_content`, `error` | Serialise an `ase.Atoms` to CIF/POSCAR/XYZ/etc. and trigger a browser download |
 
 ## Patterns to remember
 

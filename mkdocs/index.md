@@ -179,4 +179,29 @@ These widgets depend on 3rd party packages. They still ship with marimo_material
 <a href="https://molab.marimo.io/github/koaning/marimo_materials/blob/main/demos/altairwidget.py" class="gallery-img"><img src="assets/gallery/altairwidget.png" alt="AltairWidget"></a>
 <div class="gallery-links"><a href="https://molab.marimo.io/github/koaning/marimo_materials/blob/main/demos/altairwidget.py">Demo</a><a href="reference/altair-widget/">API</a><a href="reference/altair-widget.md">MD</a></div>
 </div>
+<div class="gallery-item">
+<div class="gallery-title">BulkBuilderWidget</div>
+<a href="https://molab.marimo.io/github/koaning/marimo_materials/blob/main/demos/crystalbuilder.py" class="gallery-img"><img src="assets/gallery/crystalbuilder.png" alt="BulkBuilderWidget"></a>
+<div class="gallery-links"><a href="https://molab.marimo.io/github/koaning/marimo_materials/blob/main/demos/crystalbuilder.py">Demo</a></div>
+</div>
+<div class="gallery-item">
+<div class="gallery-title">SurfaceBuilderWidget</div>
+<a href="https://molab.marimo.io/github/koaning/marimo_materials/blob/main/demos/crystalbuilder.py" class="gallery-img"><img src="assets/gallery/crystalbuilder.png" alt="SurfaceBuilderWidget"></a>
+<div class="gallery-links"><a href="https://molab.marimo.io/github/koaning/marimo_materials/blob/main/demos/crystalbuilder.py">Demo</a></div>
+</div>
+<div class="gallery-item">
+<div class="gallery-title">NanoparticleBuilderWidget</div>
+<a href="https://molab.marimo.io/github/koaning/marimo_materials/blob/main/demos/crystalbuilder.py" class="gallery-img"><img src="assets/gallery/crystalbuilder.png" alt="NanoparticleBuilderWidget"></a>
+<div class="gallery-links"><a href="https://molab.marimo.io/github/koaning/marimo_materials/blob/main/demos/crystalbuilder.py">Demo</a></div>
+</div>
+<div class="gallery-item">
+<div class="gallery-title">MoleculeBuilderWidget</div>
+<a href="https://molab.marimo.io/github/koaning/marimo_materials/blob/main/demos/crystalbuilder.py" class="gallery-img"><img src="assets/gallery/crystalbuilder.png" alt="MoleculeBuilderWidget"></a>
+<div class="gallery-links"><a href="https://molab.marimo.io/github/koaning/marimo_materials/blob/main/demos/crystalbuilder.py">Demo</a></div>
+</div>
+<div class="gallery-item">
+<div class="gallery-title">CrystalDownloadWidget</div>
+<a href="https://molab.marimo.io/github/koaning/marimo_materials/blob/main/demos/crystaldownload.py" class="gallery-img"><img src="assets/gallery/crystalbuilder.png" alt="CrystalDownloadWidget"></a>
+<div class="gallery-links"><a href="https://molab.marimo.io/github/koaning/marimo_materials/blob/main/demos/crystaldownload.py">Demo</a></div>
+</div>
 </div>

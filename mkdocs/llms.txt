@@ -5,3 +5,90 @@
 Install via `pip install marimo_materials` or `uv pip install marimo_materials`.
 
 ## Widgets
+
+### AltairWidget
+`marimo_materials.AltairWidget` – Flicker-free Altair chart with smooth data updates.
+Traitlets: `spec` (dict, the Vega-Lite spec), `width` (int), `height` (int).
+Wrap with `mo.ui.anywidget(AltairWidget(spec=...))`.
+
+### CrystalViewer
+`marimo_materials.CrystalViewer` – 3-D crystal structure viewer powered by weas-widget.
+Use `cv.from_ase(atoms)` or `cv.load_example("tio2.cif")` to load a structure, then
+display `cv.base_widget` (NOT wrapped in `mo.ui.anywidget`). Wrap only
+`cv.state_widget` for reactivity: `state = mo.ui.anywidget(cv.state_widget)`.
+Read-back: `state.value["selected_atoms"]`, `state.value["camera_position"]`, etc.
+Optional dependencies: `ase`, `weas-widget`.
+
+### CrystalUploadWidget
+`marimo_materials.CrystalUploadWidget` – Upload a crystal structure file and parse it
+with ASE.  Display with `widget = mo.ui.anywidget(CrystalUploadWidget())`.
+Read the parsed structure via `widget.widget.atoms` (an `ase.Atoms` object or None).
+Traitlets: `filename`, `ase_format`, `index`, `file_content_b64`.
+Optional dependency: `ase`.
+
+### BulkBuilderWidget
+`marimo_materials.BulkBuilderWidget` – Build bulk crystal structures via `ase.build.bulk`.
+Parameters (traitlets): `symbol` (str, e.g. "Cu"), `crystalstructure` (str, e.g. "fcc",
+empty for auto), `cubic` (bool), `supercell` (list[int] of length 3).
+Read-back traitlets: `error` (str, empty on success), `n_atoms` (int).
+Access the built structure via `widget.widget.atoms` (an `ase.Atoms` object or None).
+Wrap with `mo.ui.anywidget(BulkBuilderWidget())`.
+Optional dependency: `ase`.
+
+### SurfaceBuilderWidget
+`marimo_materials.SurfaceBuilderWidget` – Build surface slabs via ASE's facet builders.
+Parameters (traitlets): `symbol` (str), `facet` (str, one of "fcc111", "fcc100",
+"fcc110", "fcc211", "bcc100", "bcc110", "bcc111", "hcp0001", "hcp10m10"),
+`layers` (int), `vacuum` (float, Å), `supercell_a` (int), `supercell_b` (int),
+`orthogonal` (bool, default False – note fcc100/fcc110/bcc100/hcp10m10 always use orthogonal).
+Read-back traitlets: `error`, `n_atoms`.
+Access via `widget.widget.atoms`.
+Optional dependency: `ase`.
+
+### NanoparticleBuilderWidget
+`marimo_materials.NanoparticleBuilderWidget` – Build nanoparticles via `ase.cluster`.
+Three shapes are supported: Icosahedron, Decahedron, Octahedron.
+Parameters (traitlets): `symbol` (str), `shape` (str),
+  Icosahedron: `noshells` (int),
+  Decahedron: `p` (int), `q` (int), `r` (int),
+  Octahedron: `oct_length` (int), `cutoff` (int).
+Read-back traitlets: `error`, `n_atoms`.
+Access via `widget.widget.atoms`.
+Optional dependency: `ase`.
+
+### MoleculeBuilderWidget
+`marimo_materials.MoleculeBuilderWidget` – Build gas-phase molecules via `ase.build.molecule`.
+Molecule names come from ASE's G2 database (e.g. "H2O", "CO2", "CH4", "C6H6").
+Parameters (traitlets): `name` (str), `vacuum` (float, Å).
+Read-back traitlets: `error`, `n_atoms`.
+Access via `widget.widget.atoms`.
+Optional dependency: `ase`.
+
+### CrystalDownloadWidget
+`marimo_materials.CrystalDownloadWidget` – Download an ASE Atoms structure as a file in the browser.
+Pass an `ase.Atoms` object at construction time; the widget renders a format dropdown and
+**Download** button that saves the serialised file directly in the browser.
+Parameters: `atoms` (ase.Atoms), `format` (str, default "cif"), `write_kwargs` (dict, optional).
+Supported formats: `cif`, `vasp` (POSCAR), `xyz`, `extxyz`, `json`, `lammps-data`, `proteindatabank` (PDB).
+Synced traitlets: `format`, `formula`, `n_atoms`, `filename`, `file_content`, `error`.
+Call `widget.widget.set_atoms(new_atoms)` to replace the structure at runtime.
+Wrap with `mo.ui.anywidget(CrystalDownloadWidget(atoms))`.
+Optional dependency: `ase`.
+
+## Crystal builder usage pattern
+
+```python
+from marimo_materials import BulkBuilderWidget, CrystalViewer
+import marimo as mo
+
+# Display the builder form
+bulk_w = mo.ui.anywidget(BulkBuilderWidget())
+bulk_w
+
+# In a dependent cell – re-runs whenever the form changes:
+atoms = bulk_w.widget.atoms   # ase.Atoms or None
+if atoms:
+    cv = CrystalViewer()
+    cv.from_ase(atoms)
+    cv.base_widget    # display in 3D
+```
