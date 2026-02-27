@@ -1,6 +1,6 @@
 site_name: marimo_materials
 site_description: Creative AnyWidgets for notebooks
-site_url: https://marimo_materials.dev
+site_url: https://jkshenton.github.io/marimo_materials
 repo_url: https://github.com/jkshenton/marimo_materials
 repo_name: jkshenton/marimo_materials
 docs_dir: mkdocs
@@ -33,32 +33,13 @@ nav:
   - Overview: index.md
   - Reference:
       - Overview: reference/index.md
-      - Slider2D: reference/slider2d.md
-      - ChartPuck: reference/chart-puck.md
-      - ChartSelect: reference/chart-select.md
-      - Matrix: reference/matrix.md
-      - SortableList: reference/sortable-list.md
-      - Paint: reference/paint.md
-      - ThreeWidget: reference/three-widget.md
-      - EdgeDraw: reference/edge-draw.md
-      - KeystrokeWidget: reference/keystroke.md
-      - WebkitSpeechToText: reference/talk.md
-      - ColorPicker: reference/color-picker.md
-      - CopyToClipboard: reference/copy-to-clipboard.md
-      - Tangle Widgets: reference/tangle.md
-      - GamepadWidget: reference/gamepad.md
-      - WebcamCapture: reference/webcam-capture.md
-      - CellTour: reference/cell-tour.md
-      - ImageRefreshWidget: reference/image-refresh.md
-      - HTMLRefreshWidget: reference/html-refresh.md
-      - ProgressBar: reference/progress-bar.md
-      - PulsarChart: reference/pulsar-chart.md
-      - ModuleTreeWidget: reference/module-tree.md
-      - WandbChart: reference/wandb-chart.md
-      - Neo4jWidget: reference/neo4j-widget.md
-      - ScatterWidget: reference/scatter-widget.md
-      - DiffViewer: reference/diff-viewer.md
-      - Utils: reference/utils.md
+      - AltairWidget: reference/altair-widget.md
+      - CrystalViewer: reference/crystal-viewer.md
+      - CrystalEditorWidget: reference/crystal-editor.md
+      - CrystalUploadWidget: reference/crystal-upload.md
+      - CrystalDownloadWidget: reference/crystal-download.md
+      - Crystal Builders: reference/crystal-builder.md
+      - show_atoms: reference/show-atoms.md
 plugins:
   - search
   - section-index
