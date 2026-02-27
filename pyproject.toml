@@ -1,12 +1,13 @@
 [project]
 name = "marimo_materials"
-version = "0.1.0"
+version = "0.1.0a0"
 description = "Collection of Anywidget Widgets"
 readme = "README.md"
 requires-python = ">=3.10"
 license = { file = "LICENSE" }
 authors = [{ name = "Kane Shenton" }]
 classifiers = [
+  "Development Status :: 2 - Pre-Alpha",
   "Intended Audience :: Developers",
   "Intended Audience :: Science/Research",
   "License :: OSI Approved :: MIT License",

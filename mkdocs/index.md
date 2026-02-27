@@ -4,15 +4,11 @@ hide:
   - toc
 ---
 
-# Wiggly notebooks, zero friction
+# marimo_materials
 
-> "A collection of creative AnyWidgets for Python notebook environments."
+> Widgets for interactive materials science in Python notebook environments.
 
-## These docs are special 
-
-The documentation for marimo_materials is designed for humans (via hosted marimo notebooks) and robots (via markdown pages to quickly paste into prompts). The reasoning behind this is explained in more detail in [this YT video](https://youtu.be/IgyRh2FuoAk). Follow the links in each example below to find the resources that you're looking for. 
-
-## Install marimo_materials
+## Install
 
 === "uv"
 
@@ -26,182 +22,68 @@ The documentation for marimo_materials is designed for humans (via hosted marimo
     pip install marimo_materials
     ```
 
+Crystal widgets require the `crystal` extra:
 
-## What you can build
+=== "uv"
 
-<div class="widget-gallery">
-<div class="gallery-item">
-<div class="gallery-title">Slider2D</div>
-<a href="examples/slider2d/" class="gallery-img"><img src="assets/gallery/slider2d.png" alt="Slider2D widget"></a>
-<div class="gallery-links"><a href="examples/slider2d/">Demo</a><a href="reference/slider2d/">API</a><a href="reference/slider2d.md">MD</a></div>
-</div>
-<div class="gallery-item">
-<div class="gallery-title">Matrix</div>
-<a href="examples/matrix/" class="gallery-img"><img src="assets/gallery/matrix.png" alt="Matrix widget"></a>
-<div class="gallery-links"><a href="examples/matrix/">Demo</a><a href="reference/matrix/">API</a><a href="reference/matrix.md">MD</a></div>
-</div>
-<div class="gallery-item">
-<div class="gallery-title">Paint</div>
-<a href="examples/paint/" class="gallery-img"><img src="assets/gallery/paint.png" alt="Paint widget"></a>
-<div class="gallery-links"><a href="examples/paint/">Demo</a><a href="reference/paint/">API</a><a href="reference/paint.md">MD</a></div>
-</div>
-<div class="gallery-item">
-<div class="gallery-title">ThreeWidget</div>
-<a href="examples/threewidget/" class="gallery-img"><img src="assets/gallery/threewidget.png" alt="ThreeWidget widget"></a>
-<div class="gallery-links"><a href="examples/threewidget/">Demo</a><a href="reference/three-widget/">API</a><a href="reference/three-widget.md">MD</a></div>
-</div>
-<div class="gallery-item">
-<div class="gallery-title">EdgeDraw</div>
-<a href="examples/edgedraw/" class="gallery-img"><img src="assets/gallery/edgedraw.png" alt="EdgeDraw widget"></a>
-<div class="gallery-links"><a href="examples/edgedraw/">Demo</a><a href="reference/edge-draw/">API</a><a href="reference/edge-draw.md">MD</a></div>
-</div>
-<div class="gallery-item">
-<div class="gallery-title">SortableList</div>
-<a href="examples/sortlist/" class="gallery-img"><img src="assets/gallery/sortablelist.png" alt="SortableList widget"></a>
-<div class="gallery-links"><a href="examples/sortlist/">Demo</a><a href="reference/sortable-list/">API</a><a href="reference/sortable-list.md">MD</a></div>
-</div>
-<div class="gallery-item">
-<div class="gallery-title">ColorPicker</div>
-<a href="examples/colorpicker/" class="gallery-img"><img src="assets/gallery/colorpicker.png" alt="ColorPicker widget"></a>
-<div class="gallery-links"><a href="examples/colorpicker/">Demo</a><a href="reference/color-picker/">API</a><a href="reference/color-picker.md">MD</a></div>
-</div>
-<div class="gallery-item">
-<div class="gallery-title">GamepadWidget</div>
-<a href="examples/gamepad/" class="gallery-img"><img src="assets/gallery/gamepad.png" alt="GamepadWidget"></a>
-<div class="gallery-links"><a href="examples/gamepad/">Demo</a><a href="reference/gamepad/">API</a><a href="reference/gamepad.md">MD</a></div>
-</div>
-<div class="gallery-item">
-<div class="gallery-title">KeystrokeWidget</div>
-<a href="examples/keystroke/" class="gallery-img"><img src="assets/gallery/keystroke.png" alt="KeystrokeWidget"></a>
-<div class="gallery-links"><a href="examples/keystroke/">Demo</a><a href="reference/keystroke/">API</a><a href="reference/keystroke.md">MD</a></div>
-</div>
-<div class="gallery-item">
-<div class="gallery-title">SpeechToText</div>
-<a href="examples/talk/" class="gallery-img"><img src="assets/gallery/speechtotext.png" alt="WebkitSpeechToText widget"></a>
-<div class="gallery-links"><a href="examples/talk/">Demo</a><a href="reference/talk/">API</a><a href="reference/talk.md">MD</a></div>
-</div>
-<div class="gallery-item">
-<div class="gallery-title">CopyToClipboard</div>
-<a href="examples/copytoclipboard/" class="gallery-img"><img src="assets/gallery/copytoclipboard.png" alt="CopyToClipboard widget"></a>
-<div class="gallery-links"><a href="examples/copytoclipboard/">Demo</a><a href="reference/copy-to-clipboard/">API</a><a href="reference/copy-to-clipboard.md">MD</a></div>
-</div>
-<div class="gallery-item">
-<div class="gallery-title">CellTour</div>
-<a href="examples/celltour/" class="gallery-img"><img src="assets/gallery/celltour.png" alt="CellTour widget"></a>
-<div class="gallery-links"><a href="examples/celltour/">Demo</a><a href="reference/cell-tour/">API</a><a href="reference/cell-tour.md">MD</a></div>
-</div>
-<div class="gallery-item">
-<div class="gallery-title">WebcamCapture</div>
-<a href="examples/webcam-capture/" class="gallery-img"><img src="assets/gallery/webcam-capture.png" alt="WebcamCapture widget"></a>
-<div class="gallery-links"><a href="examples/webcam-capture/">Demo</a><a href="reference/webcam-capture/">API</a><a href="reference/webcam-capture.md">MD</a></div>
-</div>
-<div class="gallery-item">
-<div class="gallery-title">ImageRefreshWidget</div>
-<a href="examples/htmlwidget/" class="gallery-img"><img src="assets/gallery/imagerefresh.png" alt="ImageRefreshWidget"></a>
-<div class="gallery-links"><a href="examples/htmlwidget/">Demo</a><a href="reference/image-refresh/">API</a><a href="reference/image-refresh.md">MD</a></div>
-</div>
-<div class="gallery-item">
-<div class="gallery-title">HTMLRefreshWidget</div>
-<a href="examples/htmlwidget/" class="gallery-img"><img src="assets/gallery/htmlwidget.png" alt="HTMLRefreshWidget"></a>
-<div class="gallery-links"><a href="examples/htmlwidget/">Demo</a><a href="reference/html-refresh/">API</a><a href="reference/html-refresh.md">MD</a></div>
-</div>
-<div class="gallery-item">
-<div class="gallery-title">ProgressBar</div>
-<a href="examples/htmlwidget/" class="gallery-img"><img src="assets/gallery/progressbar.png" alt="ProgressBar widget"></a>
-<div class="gallery-links"><a href="examples/htmlwidget/">Demo</a><a href="reference/progress-bar/">API</a><a href="reference/progress-bar.md">MD</a></div>
-</div>
-<div class="gallery-item">
-<div class="gallery-title">PulsarChart</div>
-<a href="examples/pulsarchart/" class="gallery-img"><img src="assets/gallery/pulsarchart.png" alt="PulsarChart widget"></a>
-<div class="gallery-links"><a href="examples/pulsarchart/">Demo</a><a href="reference/pulsar-chart/">API</a><a href="reference/pulsar-chart.md">MD</a></div>
-</div>
-<div class="gallery-item">
-<div class="gallery-title">TextCompare</div>
-<a href="examples/textcompare/" class="gallery-img"><img src="assets/gallery/textcompare.png" alt="TextCompare widget"></a>
-<div class="gallery-links"><a href="examples/textcompare/">Demo</a><a href="reference/text-compare/">API</a><a href="reference/text-compare.md">MD</a></div>
-</div>
-<div class="gallery-item">
-<div class="gallery-title">EnvConfig</div>
-<a href="examples/envconfig/" class="gallery-img"><img src="assets/gallery/envconfig.png" alt="EnvConfig widget"></a>
-<div class="gallery-links"><a href="examples/envconfig/">Demo</a><a href="reference/env-config/">API</a><a href="reference/env-config.md">MD</a></div>
-</div>
-<div class="gallery-item">
-<div class="gallery-title">Tangle</div>
-<a href="examples/tangle/" class="gallery-img"><img src="assets/gallery/tangle.png" alt="Tangle widgets"></a>
-<div class="gallery-links"><a href="examples/tangle/">Demo</a><a href="reference/tangle/">API</a><a href="reference/tangle.md">MD</a></div>
-</div>
-<div class="gallery-item">
-<div class="gallery-title">ChartPuck</div>
-<a href="examples/chartpuck/" class="gallery-img"><img src="assets/gallery/chartpuck.png" alt="ChartPuck widget"></a>
-<div class="gallery-links"><a href="examples/chartpuck/">Demo</a><a href="reference/chart-puck/">API</a><a href="reference/chart-puck.md">MD</a></div>
-</div>
-<div class="gallery-item">
-<div class="gallery-title">ChartSelect</div>
-<a href="examples/chartselect/" class="gallery-img"><img src="assets/gallery/chartselect.png" alt="ChartSelect widget"></a>
-<div class="gallery-links"><a href="examples/chartselect/">Demo</a><a href="reference/chart-select/">API</a><a href="reference/chart-select.md">MD</a></div>
-</div>
-<div class="gallery-item">
-<div class="gallery-title">ScatterWidget</div>
-<a href="examples/scatterwidget/" class="gallery-img"><img src="assets/gallery/scatterwidget.png" alt="ScatterWidget"></a>
-<div class="gallery-links"><a href="examples/scatterwidget/">Demo</a><a href="reference/scatter-widget/">API</a><a href="reference/scatter-widget.md">MD</a></div>
-</div>
-<div class="gallery-item">
-<div class="gallery-title">DiffViewer</div>
-<a href="examples/diffviewer/" class="gallery-img"><img src="assets/gallery/diffviewer.png" alt="DiffViewer"></a>
-<div class="gallery-links"><a href="examples/diffviewer/">Demo</a><a href="reference/diff-viewer/">API</a><a href="reference/diff-viewer.md">MD</a></div>
-</div>
-</div>
+    ```bash
+    uv pip install "marimo_materials[crystal]"
+    ```
 
-Each widget page embeds a marimo-powered html-wasm export and links back to the exact notebook that generated the demo, so you can open the original `.py` file and rerun it locally.
+=== "pip"
 
-## 3rd party widgets
+    ```bash
+    pip install "marimo_materials[crystal]"
+    ```
 
-These widgets depend on 3rd party packages. They still ship with marimo_materials but have demos hosted on [molab](https://molab.marimo.io) because many of the dependencies are not compatible with WASM.
+
+## Widgets
 
 <div class="widget-gallery">
-<div class="gallery-item">
-<div class="gallery-title">ModuleTreeWidget</div>
-<a href="https://molab.marimo.io/notebooks/nb_K7QvvoASZErgKxwD8XSMWi" class="gallery-img"><img src="assets/gallery/moduletree.png" alt="ModuleTreeWidget"></a>
-<div class="gallery-links"><a href="https://molab.marimo.io/notebooks/nb_K7QvvoASZErgKxwD8XSMWi">Demo</a><a href="reference/module-tree/">API</a><a href="reference/module-tree.md">MD</a></div>
-</div>
-<div class="gallery-item">
-<div class="gallery-title">WandbChart</div>
-<a href="https://molab.marimo.io/notebooks/nb_pbN8i6DyggB26Xrzw9Bztw" class="gallery-img"><img src="assets/gallery/wandbchart.png" alt="WandbChart widget"></a>
-<div class="gallery-links"><a href="https://molab.marimo.io/notebooks/nb_pbN8i6DyggB26Xrzw9Bztw">Demo</a><a href="reference/wandb-chart/">API</a><a href="reference/wandb-chart.md">MD</a></div>
-</div>
-<div class="gallery-item">
-<div class="gallery-title">Neo4jWidget</div>
-<a href="https://molab.marimo.io/notebooks/nb_ghifaw8nRCuDAgc1UTajXU" class="gallery-img"><img src="assets/gallery/neo4j-widget.png" alt="Neo4jWidget"></a>
-<div class="gallery-links"><a href="https://molab.marimo.io/notebooks/nb_ghifaw8nRCuDAgc1UTajXU">Demo</a><a href="reference/neo4j-widget/">API</a><a href="reference/neo4j-widget.md">MD</a></div>
-</div>
 <div class="gallery-item">
 <div class="gallery-title">AltairWidget</div>
-<a href="https://molab.marimo.io/github/koaning/marimo_materials/blob/main/demos/altairwidget.py" class="gallery-img"><img src="assets/gallery/altairwidget.png" alt="AltairWidget"></a>
-<div class="gallery-links"><a href="https://molab.marimo.io/github/koaning/marimo_materials/blob/main/demos/altairwidget.py">Demo</a><a href="reference/altair-widget/">API</a><a href="reference/altair-widget.md">MD</a></div>
+<a href="examples/altairwidget/" class="gallery-img"><img src="assets/gallery/altairwidget.png" alt="AltairWidget"></a>
+<div class="gallery-links"><a href="examples/altairwidget/">Demo</a><a href="reference/altair-widget/">API</a><a href="reference/altair-widget.md">MD</a></div>
 </div>
 <div class="gallery-item">
-<div class="gallery-title">BulkBuilderWidget</div>
-<a href="https://molab.marimo.io/github/koaning/marimo_materials/blob/main/demos/crystalbuilder.py" class="gallery-img"><img src="assets/gallery/crystalbuilder.png" alt="BulkBuilderWidget"></a>
-<div class="gallery-links"><a href="https://molab.marimo.io/github/koaning/marimo_materials/blob/main/demos/crystalbuilder.py">Demo</a></div>
+<div class="gallery-title">CrystalViewer</div>
+<a href="examples/crystalviewer/" class="gallery-img"><img src="assets/gallery/crystalviewer.png" alt="CrystalViewer"></a>
+<div class="gallery-links"><a href="examples/crystalviewer/">Demo</a><a href="reference/crystal-viewer/">API</a><a href="reference/crystal-viewer.md">MD</a></div>
 </div>
 <div class="gallery-item">
-<div class="gallery-title">SurfaceBuilderWidget</div>
-<a href="https://molab.marimo.io/github/koaning/marimo_materials/blob/main/demos/crystalbuilder.py" class="gallery-img"><img src="assets/gallery/crystalbuilder.png" alt="SurfaceBuilderWidget"></a>
-<div class="gallery-links"><a href="https://molab.marimo.io/github/koaning/marimo_materials/blob/main/demos/crystalbuilder.py">Demo</a></div>
+<div class="gallery-title">CrystalEditorWidget</div>
+<a href="examples/crystaleditor/" class="gallery-img"><img src="assets/gallery/crystaleditor.png" alt="CrystalEditorWidget"></a>
+<div class="gallery-links"><a href="examples/crystaleditor/">Demo</a><a href="reference/crystal-editor/">API</a><a href="reference/crystal-editor.md">MD</a></div>
 </div>
 <div class="gallery-item">
-<div class="gallery-title">NanoparticleBuilderWidget</div>
-<a href="https://molab.marimo.io/github/koaning/marimo_materials/blob/main/demos/crystalbuilder.py" class="gallery-img"><img src="assets/gallery/crystalbuilder.png" alt="NanoparticleBuilderWidget"></a>
-<div class="gallery-links"><a href="https://molab.marimo.io/github/koaning/marimo_materials/blob/main/demos/crystalbuilder.py">Demo</a></div>
-</div>
-<div class="gallery-item">
-<div class="gallery-title">MoleculeBuilderWidget</div>
-<a href="https://molab.marimo.io/github/koaning/marimo_materials/blob/main/demos/crystalbuilder.py" class="gallery-img"><img src="assets/gallery/crystalbuilder.png" alt="MoleculeBuilderWidget"></a>
-<div class="gallery-links"><a href="https://molab.marimo.io/github/koaning/marimo_materials/blob/main/demos/crystalbuilder.py">Demo</a></div>
+<div class="gallery-title">CrystalUploadWidget</div>
+<a href="examples/crystalupload/" class="gallery-img"><img src="assets/gallery/crystalupload.png" alt="CrystalUploadWidget"></a>
+<div class="gallery-links"><a href="examples/crystalupload/">Demo</a><a href="reference/crystal-upload/">API</a><a href="reference/crystal-upload.md">MD</a></div>
 </div>
 <div class="gallery-item">
 <div class="gallery-title">CrystalDownloadWidget</div>
-<a href="https://molab.marimo.io/github/koaning/marimo_materials/blob/main/demos/crystaldownload.py" class="gallery-img"><img src="assets/gallery/crystalbuilder.png" alt="CrystalDownloadWidget"></a>
-<div class="gallery-links"><a href="https://molab.marimo.io/github/koaning/marimo_materials/blob/main/demos/crystaldownload.py">Demo</a></div>
+<a href="examples/crystaldownload/" class="gallery-img"><img src="assets/gallery/crystaldownload.png" alt="CrystalDownloadWidget"></a>
+<div class="gallery-links"><a href="examples/crystaldownload/">Demo</a><a href="reference/crystal-download/">API</a><a href="reference/crystal-download.md">MD</a></div>
+</div>
+<div class="gallery-item">
+<div class="gallery-title">BulkBuilderWidget</div>
+<a href="examples/crystalbuilder/" class="gallery-img"><img src="assets/gallery/crystalbuilder.png" alt="Crystal Builders"></a>
+<div class="gallery-links"><a href="examples/crystalbuilder/">Demo</a><a href="reference/crystal-builder/">API</a><a href="reference/crystal-builder.md">MD</a></div>
+</div>
+<div class="gallery-item">
+<div class="gallery-title">SurfaceBuilderWidget</div>
+<a href="examples/crystalbuilder/" class="gallery-img"><img src="assets/gallery/crystalbuilder.png" alt="SurfaceBuilderWidget"></a>
+<div class="gallery-links"><a href="examples/crystalbuilder/">Demo</a><a href="reference/crystal-builder/">API</a><a href="reference/crystal-builder.md">MD</a></div>
+</div>
+<div class="gallery-item">
+<div class="gallery-title">NanoparticleBuilderWidget</div>
+<a href="examples/crystalbuilder/" class="gallery-img"><img src="assets/gallery/crystalbuilder.png" alt="NanoparticleBuilderWidget"></a>
+<div class="gallery-links"><a href="examples/crystalbuilder/">Demo</a><a href="reference/crystal-builder/">API</a><a href="reference/crystal-builder.md">MD</a></div>
+</div>
+<div class="gallery-item">
+<div class="gallery-title">MoleculeBuilderWidget</div>
+<a href="examples/crystalbuilder/" class="gallery-img"><img src="assets/gallery/crystalbuilder.png" alt="MoleculeBuilderWidget"></a>
+<div class="gallery-links"><a href="examples/crystalbuilder/">Demo</a><a href="reference/crystal-builder/">API</a><a href="reference/crystal-builder.md">MD</a></div>
 </div>
 </div>
+
