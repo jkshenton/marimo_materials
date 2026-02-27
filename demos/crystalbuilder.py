@@ -1,3 +1,11 @@
+# /// script
+# requires-python = ">=3.10"
+# dependencies = [
+#     "marimo>=0.18.0",
+#     "marimo_materials[crystal]==0.1.0a0",
+# ]
+# ///
+
 import marimo
 
 __generated_with = "0.18.2"
