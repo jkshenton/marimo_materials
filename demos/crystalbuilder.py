@@ -1,19 +1,19 @@
 import marimo
 
-__generated_with = "0.20.2"
+__generated_with = "0.16.5"
 app = marimo.App(width="medium")
 
 
 @app.cell
 def _():
     import marimo as mo
-
     return (mo,)
 
 
 @app.cell
 def _(mo):
-    mo.md("""
+    mo.md(
+        """
     # Crystal Structure Builders
 
     Interactive widgets that build `ase.Atoms` objects from a form UI.
@@ -22,15 +22,14 @@ def _(mo):
     Pass the result to `CrystalViewer.from_ase()` to view the structure in 3D.
 
     Requires `ase` (`pip install ase`).
-    """)
+    """
+    )
     return
 
 
 @app.cell
 def _(mo):
-    mo.md("""
-    ## Bulk crystal
-    """)
+    mo.md("""## Bulk crystal""")
     return
 
 
@@ -62,9 +61,7 @@ def _(bulk_widget, mo):
 
 @app.cell
 def _(mo):
-    mo.md("""
-    ## Surface slab
-    """)
+    mo.md("""## Surface slab""")
     return
 
 
@@ -96,9 +93,7 @@ def _(mo, surface_widget):
 
 @app.cell
 def _(mo):
-    mo.md("""
-    ## Nanoparticle
-    """)
+    mo.md("""## Nanoparticle""")
     return
 
 
@@ -130,9 +125,7 @@ def _(mo, nano_widget):
 
 @app.cell
 def _(mo):
-    mo.md("""
-    ## Molecule
-    """)
+    mo.md("""## Molecule""")
     return
 
 

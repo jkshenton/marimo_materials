@@ -18,15 +18,13 @@ dependencies = [
     "drawdata",
     "numpy",
     "pillow",
-    "playwright>=1.57.0",
     "python-dotenv>=1.2.1",
-    "weas-widget>=0.2.6",
 ]
 
 [project.optional-dependencies]
 crystal = [
-    "weas-widget>=0.2.0",
-    "ase>=3.22",
+    "weas-widget>=0.2.6",
+    "ase>=3.27",
 ]
 test = [
     "pytest>=8.3.3",
@@ -66,9 +64,6 @@ artifacts = ["marimo_materials/static/*"]
 
 [tool.marimo.runtime]
 auto_instantiate = true
-
-[tool.uv.sources]
-weas-widget = { path = "../weas-widget", editable = true }
 
 [tool.pytest.ini_options]
 # Browser integration tests require the test-browser extra (pytest-playwright).
