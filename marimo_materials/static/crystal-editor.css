@@ -213,6 +213,35 @@
   gap: 8px;
 }
 
+/* 3×3 matrix grid */
+.ce-matrix-grid {
+  display: grid;
+  grid-template-columns: 18px repeat(3, 1fr);
+  gap: 4px;
+  align-items: center;
+}
+
+.ce-matrix-corner {
+  /* top-left spacer */
+}
+
+.ce-matrix-head {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #999;
+  text-align: center;
+}
+
+.ce-matrix-row-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: #666;
+  text-align: right;
+  padding-right: 4px;
+}
+
 .ce-field {
   display: flex;
   flex-direction: column;
@@ -299,11 +328,25 @@
   align-items: center;
 }
 
+.ce-sublabel {
+  font-size: 11px;
+  color: #666;
+  white-space: nowrap;
+}
+
 /* ── Dark mode ─────────────────────────────────────────────────── */
 @media (prefers-color-scheme: dark) {
   .ce-section-title {
     color: #666;
     border-color: #333;
+  }
+
+  .ce-matrix-head, .ce-sublabel {
+    color: #666;
+  }
+
+  .ce-matrix-row-label {
+    color: #888;
   }
 
   .ce-table-wrap {

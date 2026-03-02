@@ -8,14 +8,13 @@
 
 import marimo
 
-__generated_with = "0.20.2"
+__generated_with = "0.18.2"
 app = marimo.App(width="medium")
 
 
 @app.cell
 def _():
     import marimo as mo
-
     return (mo,)
 
 
@@ -49,7 +48,7 @@ def _(mo):
 
 @app.cell
 def _(editor, mo, widget):
-    from marimo_materials import show_atoms
+    from marimo_materials import CrystalViewer as _CrystalViewer, show_atoms
 
     _error = widget.value.get("error", "")
     atoms = editor.atoms
@@ -62,8 +61,21 @@ def _(editor, mo, widget):
     elif atoms is None:
         _result = mo.md("_Load a structure to begin editing._")
     else:
-        _result = show_atoms(atoms, mo)
+        _cv = _CrystalViewer(height="400px")
+        _cv.from_ase(atoms)
+        _result = mo.vstack([show_atoms(atoms, mo), _cv.weas])
     _result
+    return
+
+
+@app.cell
+def _(editor):
+    editor.atoms.center
+    return
+
+
+@app.cell
+def _():
     return
 
 

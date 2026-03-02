@@ -52,7 +52,7 @@ def _(mo):
 
 @app.cell
 def _(bulk_widget, mo):
-    from marimo_materials import show_atoms as _show_atoms
+    from marimo_materials import CrystalViewer as _CrystalViewer, show_atoms as _show_atoms
 
     _atoms = bulk_widget.widget.atoms
     _err = bulk_widget.widget.error
@@ -62,7 +62,9 @@ def _(bulk_widget, mo):
     elif _atoms is None or len(_atoms) == 0:
         _result = mo.md("_Configure the form above._")
     else:
-        _result = _show_atoms(_atoms, mo)
+        _cv = _CrystalViewer(height="400px")
+        _cv.from_ase(_atoms)
+        _result = mo.vstack([_show_atoms(_atoms, mo), _cv.weas])
     _result
     return
 
@@ -86,7 +88,7 @@ def _(mo):
 
 @app.cell
 def _(mo, surface_widget):
-    from marimo_materials import show_atoms as _show_atoms
+    from marimo_materials import CrystalViewer as _CrystalViewer, show_atoms as _show_atoms
 
     _atoms = surface_widget.widget.atoms
     _err = surface_widget.widget.error
@@ -96,7 +98,9 @@ def _(mo, surface_widget):
     elif _atoms is None or len(_atoms) == 0:
         _result = mo.md("_Configure the form above._")
     else:
-        _result = _show_atoms(_atoms, mo)
+        _cv = _CrystalViewer(height="400px")
+        _cv.from_ase(_atoms)
+        _result = mo.vstack([_show_atoms(_atoms, mo), _cv.weas])
     _result
     return
 
@@ -120,7 +124,7 @@ def _(mo):
 
 @app.cell
 def _(mo, nano_widget):
-    from marimo_materials import show_atoms as _show_atoms
+    from marimo_materials import CrystalViewer as _CrystalViewer, show_atoms as _show_atoms
 
     _atoms = nano_widget.widget.atoms
     _err = nano_widget.widget.error
@@ -130,7 +134,9 @@ def _(mo, nano_widget):
     elif _atoms is None or len(_atoms) == 0:
         _result = mo.md("_Configure the form above._")
     else:
-        _result = _show_atoms(_atoms, mo)
+        _cv = _CrystalViewer(height="400px")
+        _cv.from_ase(_atoms)
+        _result = mo.vstack([_show_atoms(_atoms, mo), _cv.weas])
     _result
     return
 
@@ -154,7 +160,7 @@ def _(mo):
 
 @app.cell
 def _(mo, mol_widget):
-    from marimo_materials import show_atoms as _show_atoms
+    from marimo_materials import CrystalViewer as _CrystalViewer, show_atoms as _show_atoms
 
     _atoms = mol_widget.widget.atoms
     _err = mol_widget.widget.error
@@ -164,7 +170,9 @@ def _(mo, mol_widget):
     elif _atoms is None or len(_atoms) == 0:
         _result = mo.md("_Configure the form above._")
     else:
-        _result = _show_atoms(_atoms, mo)
+        _cv = _CrystalViewer(height="400px")
+        _cv.from_ase(_atoms)
+        _result = mo.vstack([_show_atoms(_atoms, mo), _cv.weas])
     _result
     return
 

@@ -45,6 +45,7 @@ def _atoms_to_json(atoms: Any) -> str:
         "positions": atoms.get_positions().tolist(),
         "scaled_positions": atoms.get_scaled_positions().tolist(),
         "cellpar": [round(v, 8) for v in cellpar],
+        "cell": [[round(v, 10) for v in row] for row in atoms.cell.tolist()],
         "pbc": atoms.get_pbc().tolist(),
     })
 
@@ -89,9 +90,19 @@ def _apply_op(atoms: Any, op: dict) -> Any:
         atoms.wrap()
 
     elif name == "center":
-        vacuum = float(params.get("vacuum", 0))
+        vacuum = params.get("vacuum", None)
         axis   = params.get("axis", [0, 1, 2])
-        atoms.center(vacuum=vacuum, axis=axis)
+        about  = params.get("about", None)
+        # ASE's center() does about[n] internally, so a bare scalar must be
+        # expanded to a 3-element array for periodic structures.
+        if about is not None and not hasattr(about, "__len__"):
+            about = [float(about)] * 3
+        kwargs: dict = {"axis": axis}
+        if vacuum is not None:
+            kwargs["vacuum"] = float(vacuum)
+        if about is not None:
+            kwargs["about"] = about
+        atoms.center(**kwargs)
 
     elif name == "repeat":
         rep = params.get("rep", [1, 1, 1])
@@ -111,11 +122,14 @@ def _apply_op(atoms: Any, op: dict) -> Any:
 
     elif name == "set_cell":
         from ase.cell import Cell
-        cellpar     = params.get("cellpar", atoms.cell.cellpar().tolist())
         pbc         = params.get("pbc", atoms.get_pbc().tolist())
         scale_atoms = bool(params.get("scale_atoms", False))
-        new_cell    = Cell.fromcellpar(cellpar)
         atoms.set_pbc(pbc)
+        if "cell_matrix" in params:
+            new_cell = Cell(np.array(params["cell_matrix"], dtype=float))
+        else:
+            cellpar  = params.get("cellpar", atoms.cell.cellpar().tolist())
+            new_cell = Cell.fromcellpar(cellpar)
         atoms.set_cell(new_cell, scale_atoms=scale_atoms)
 
     elif name == "delete_atom":
@@ -153,6 +167,7 @@ class CrystalEditorWidget(anywidget.AnyWidget):
     # Synced with JS
     atoms_json:    str = traitlets.Unicode("").tag(sync=True)
     atoms_trigger: int = traitlets.Int(0).tag(sync=True)
+    op_json:       str = traitlets.Unicode("").tag(sync=True)
     error:         str = traitlets.Unicode("").tag(sync=True)
     n_atoms:       int = traitlets.Int(0).tag(sync=True)
 
@@ -180,26 +195,42 @@ class CrystalEditorWidget(anywidget.AnyWidget):
     @traitlets.observe("atoms_trigger")
     def _on_trigger(self, _change: dict) -> None:  # noqa: ARG002
         """Apply site edits (and optional operation) sent by the JS."""
-        if not self.atoms_json:
-            return
-
         self.error = ""
         try:
-            payload = json.loads(self.atoms_json)
-            op      = payload.pop("_op", None)
-
-            with warnings.catch_warnings():
-                warnings.simplefilter("error")
+            op_raw = self.op_json
+            if op_raw:
+                # Operation-only call: apply directly to authoritative Python
+                # atoms so no position data round-trips through the table.
+                self.op_json = ""
+                if self._atoms is None:
+                    return
+                op = json.loads(op_raw)
+                atoms = self._apply_op_safe(self._atoms.copy(), op)
+            elif self.atoms_json:
+                # Site-edit payload: rebuild atoms from the JS table state.
+                payload = json.loads(self.atoms_json)
+                op      = payload.pop("_op", None)
                 atoms = _atoms_from_payload(payload)
                 if op is not None:
-                    atoms = _apply_op(atoms, op)
+                    atoms = self._apply_op_safe(atoms, op)
+            else:
+                return
 
             self._atoms  = atoms
             self.atoms_json = _atoms_to_json(atoms)
             self.n_atoms = len(atoms)
 
         except Exception as exc:
+            # Reset atoms_json to the last known-good state so the JS table
+            # stays in sync rather than being left with a stale payload.
+            if self._atoms is not None:
+                self.atoms_json = _atoms_to_json(self._atoms)
             self.error = str(exc)
+
+    def _apply_op_safe(self, atoms: Any, op: dict) -> Any:
+        with warnings.catch_warnings():
+            warnings.simplefilter("ignore")
+            return _apply_op(atoms, op)
 
     # ------------------------------------------------------------------
     # Public API

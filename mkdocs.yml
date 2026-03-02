@@ -33,7 +33,6 @@ nav:
   - Overview: index.md
   - Reference:
       - Overview: reference/index.md
-      - AltairWidget: reference/altair-widget.md
       - CrystalViewer: reference/crystal-viewer.md
       - CrystalEditorWidget: reference/crystal-editor.md
       - CrystalUploadWidget: reference/crystal-upload.md

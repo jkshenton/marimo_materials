@@ -2,7 +2,6 @@
 
 import importlib.metadata
 
-from .altair_widget import AltairWidget
 from .atoms_view import show_atoms
 try:
     from .crystal_editor import CrystalEditorWidget
@@ -37,7 +36,6 @@ except ImportError:
 __version__ = importlib.metadata.version("marimo_materials")
 
 __all__ = [
-    "AltairWidget",
     "BulkBuilderWidget",
     "CrystalDownloadWidget",
     "CrystalEditorWidget",

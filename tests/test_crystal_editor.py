@@ -19,7 +19,17 @@ def _h2o():
 
 
 def _send_op(editor, name, params=None):
-    """Simulate a JS operation trigger on *editor*."""
+    """Simulate a JS operation-button trigger on *editor* (op-only, no position data).
+
+    Uses the dedicated op_json traitlet so atoms_json is never set to an
+    op-only payload (which would crash the JS syncFromModel listener).
+    """
+    editor.op_json = json.dumps({"name": name, "params": params or {}})
+    editor.atoms_trigger += 1
+
+
+def _send_op_with_state(editor, name, params=None):
+    """Simulate the Apply-site-edits + op path: sends position data alongside the op."""
     payload = json.loads(editor.atoms_json)
     payload["_op"] = {"name": name, "params": params or {}}
     editor.atoms_json = json.dumps(payload)
@@ -153,6 +163,24 @@ class TestApplyOp:
         out = self._fn(atoms, "center", {"vacuum": 5.0, "axis": [2]})
         assert out.cell.cellpar()[2] > atoms.cell.cellpar()[2]
 
+    def test_center_no_args(self):
+        """center() with no vacuum and no about should shift atoms, not resize cell."""
+        import numpy as np
+        atoms = _cu_bulk()
+        cell_before = atoms.cell.cellpar().copy()
+        out = self._fn(atoms, "center", {"axis": [0, 1, 2]})
+        np.testing.assert_allclose(out.cell.cellpar(), cell_before, atol=1e-6)
+
+    def test_center_about_scalar(self):
+        """about=scalar is expanded to [v,v,v] and forwarded to ASE without raising."""
+        out = self._fn(_cu_bulk(), "center", {"axis": [0, 1, 2], "about": 0.0})
+        assert len(out) == len(_cu_bulk())
+
+    def test_center_about_point(self):
+        """about=[x,y,z] is forwarded to ASE without raising."""
+        out = self._fn(_h2o(), "center", {"axis": [0, 1, 2], "about": [1.0, 2.0, 3.0]})
+        assert len(out) == 3
+
     def test_repeat(self):
         atoms = _cu_bulk()
         n_before = len(atoms)
@@ -199,6 +227,24 @@ class TestApplyOp:
         new_cellpar = [4.0, 4.0, 4.0, 90.0, 90.0, 90.0]
         out = self._fn(atoms, "set_cell", {"cellpar": new_cellpar, "pbc": [True]*3, "scale_atoms": True})
         np.testing.assert_allclose(out.get_scaled_positions(), old_scaled, atol=1e-6)
+
+    def test_set_cell_matrix(self):
+        """set_cell with cell_matrix should use the 3x3 matrix directly."""
+        import numpy as np
+        atoms = _cu_bulk()
+        # Slightly stretched orthorhombic matrix
+        new_matrix = [[5.0, 0.0, 0.0], [0.0, 5.0, 0.0], [0.0, 0.0, 5.0]]
+        out = self._fn(atoms, "set_cell", {"cell_matrix": new_matrix, "pbc": [True]*3, "scale_atoms": False})
+        np.testing.assert_allclose(out.cell.tolist(), new_matrix, atol=1e-8)
+
+    def test_set_cell_matrix_nonortho(self):
+        """set_cell with a non-orthogonal 3x3 matrix roundtrips correctly."""
+        import numpy as np
+        atoms = _cu_bulk()
+        # Hexagonal-ish cell
+        new_matrix = [[4.0, 0.0, 0.0], [-2.0, 3.464, 0.0], [0.0, 0.0, 6.5]]
+        out = self._fn(atoms, "set_cell", {"cell_matrix": new_matrix, "pbc": [True]*3, "scale_atoms": False})
+        np.testing.assert_allclose(out.cell.tolist(), new_matrix, atol=1e-8)
 
     def test_delete_atom(self):
         atoms = _cu_bulk()
@@ -394,3 +440,36 @@ class TestCrystalEditorWidget:
         w.atoms_trigger += 1  # no atoms loaded; should not raise
         assert w.atoms is None
         assert w.error == ""
+
+    def test_repeated_center_wrap_is_stable(self):
+        """Applying center+wrap many times must not shift atoms or create overlaps.
+
+        Regression test: previously each op-button click round-tripped positions
+        through 6 dp-rounded table DOM inputs, causing atoms near cell boundaries
+        to drift and eventually overlap after ~5–10 cycles.
+        """
+        import numpy as np
+
+        w = self._w(_cu_bulk())
+        n_atoms_expected = len(w.atoms)
+
+        for _ in range(20):
+            _send_op(w, "center", {"vacuum": None, "axis": [0, 1, 2]})
+            assert w.error == ""
+            _send_op(w, "wrap")
+            assert w.error == ""
+
+        pos_final = w.atoms.get_positions()
+        assert len(pos_final) == n_atoms_expected, "atom count changed"
+
+        # Positions should be stable to machine precision (no accumulated drift)
+        # Check via fractional coordinates so the test is cell-agnostic
+        sc0 = w.atoms.get_scaled_positions()
+        # All fractional coords must be in [0, 1)
+        assert np.all(sc0 >= 0) and np.all(sc0 < 1), "atoms outside cell after center+wrap cycles"
+
+        # No two atoms should be within 0.5 Å of each other (cubic Cu nn ~2.55 Å)
+        from ase.geometry import get_distances
+        _, dists = get_distances(pos_final, cell=w.atoms.cell, pbc=w.atoms.pbc)
+        np.fill_diagonal(dists, np.inf)
+        assert dists.min() > 0.5, f"overlapping atoms found (min dist {dists.min():.4f} Å)"

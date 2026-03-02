@@ -31,7 +31,7 @@ def _(mo):
 
 @app.cell
 def _(mo, uploader, widget):
-    from marimo_materials import show_atoms
+    from marimo_materials import CrystalViewer as _CrystalViewer, show_atoms
 
     _filename = widget.value.get("filename", "")
     _parse_error = widget.value.get("parse_error", "")
@@ -47,7 +47,9 @@ def _(mo, uploader, widget):
     elif atoms is None:
         _result = mo.md("_Upload a crystal structure file above (CIF, POSCAR, XYZ, …) then press **Parse structure**._")
     else:
-        _result = show_atoms(atoms, mo, title=_filename, frames_count=_frames_count)
+        _cv = _CrystalViewer(height="400px")
+        _cv.from_ase(atoms)
+        _result = mo.vstack([show_atoms(atoms, mo, title=_filename, frames_count=_frames_count), _cv.weas])
 
     _warning_callout = (
         mo.callout(mo.md(f"**Parse warnings**\n\n```\n{_parse_warnings}\n```"), kind="warn")

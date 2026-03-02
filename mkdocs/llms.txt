@@ -6,11 +6,6 @@ Install via `pip install marimo_materials` or `uv pip install marimo_materials`.
 
 ## Widgets
 
-### AltairWidget
-`marimo_materials.AltairWidget` – Flicker-free Altair chart with smooth data updates.
-Traitlets: `spec` (dict, the Vega-Lite spec), `width` (int), `height` (int).
-Wrap with `mo.ui.anywidget(AltairWidget(spec=...))`.
-
 ### CrystalViewer
 `marimo_materials.CrystalViewer` – 3-D crystal structure viewer powered by weas-widget.
 Use `cv.from_ase(atoms)` or `cv.load_example("tio2.cif")` to load a structure, then

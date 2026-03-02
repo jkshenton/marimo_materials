@@ -41,11 +41,6 @@ Crystal widgets require the `crystal` extra:
 
 <div class="widget-gallery">
 <div class="gallery-item">
-<div class="gallery-title">AltairWidget</div>
-<a href="examples/altairwidget/" class="gallery-img"><img src="assets/gallery/altairwidget.png" alt="AltairWidget"></a>
-<div class="gallery-links"><a href="examples/altairwidget/">Demo</a><a href="reference/altair-widget/">API</a><a href="reference/altair-widget.md">MD</a></div>
-</div>
-<div class="gallery-item">
 <div class="gallery-title">CrystalViewer</div>
 <a href="examples/crystalviewer/" class="gallery-img"><img src="assets/gallery/crystalviewer.png" alt="CrystalViewer"></a>
 <div class="gallery-links"><a href="examples/crystalviewer/">Demo</a><a href="reference/crystal-viewer/">API</a><a href="reference/crystal-viewer.md">MD</a></div>

@@ -73,6 +73,20 @@ function render({ model, el }) {
 
   root.appendChild(sectionTitle("Unit Cell"));
 
+  // Cellpar / Matrix toggle
+  let cellMode = "cellpar";
+  const cellModeToggle = document.createElement("div");
+  cellModeToggle.className = "ce-coords-toggle";
+  const cellparBtn = document.createElement("button");
+  cellparBtn.className = "ce-toggle-btn active";
+  cellparBtn.textContent = "a, b, c, α, β, γ";
+  const matrixBtn = document.createElement("button");
+  matrixBtn.className = "ce-toggle-btn";
+  matrixBtn.textContent = "3×3 matrix";
+  cellModeToggle.append(cellparBtn, matrixBtn);
+  root.appendChild(cellModeToggle);
+
+  // ── cellpar inputs ─────────────────────────────────────────────────────────
   const cellGrid = document.createElement("div");
   cellGrid.className = "ce-grid";
   root.appendChild(cellGrid);
@@ -85,6 +99,44 @@ function render({ model, el }) {
   const alF = field("α (°)"); const alIn = numInput(90, "0.01", "0"); alF.appendChild(alIn); cellGrid.appendChild(alF);
   const beF = field("β (°)"); const beIn = numInput(90, "0.01", "0"); beF.appendChild(beIn); cellGrid.appendChild(beF);
   const gaF = field("γ (°)"); const gaIn = numInput(90, "0.01", "0"); gaF.appendChild(gaIn); cellGrid.appendChild(gaF);
+
+  // ── 3×3 matrix inputs ─────────────────────────────────────────────────────
+  const matrixGrid = document.createElement("div");
+  matrixGrid.className = "ce-matrix-grid";
+  matrixGrid.hidden = true;
+  root.appendChild(matrixGrid);
+
+  // Header row: blank + x, y, z
+  [["ce-matrix-corner", ""], ["ce-matrix-head", "x"], ["ce-matrix-head", "y"], ["ce-matrix-head", "z"]].forEach(([cls, t]) => {
+    const th = document.createElement("span"); th.className = cls; th.textContent = t;
+    matrixGrid.appendChild(th);
+  });
+
+  // 3 rows (a, b, c vectors), 3 inputs each
+  const matrixInputs = ["a", "b", "c"].map(rowLabel => {
+    const lbl = document.createElement("span");
+    lbl.className = "ce-matrix-row-label";
+    lbl.textContent = rowLabel;
+    matrixGrid.appendChild(lbl);
+    return [0, 1, 2].map(() => {
+      const inp = numInput(0, "0.0001", undefined, "100%");
+      matrixGrid.appendChild(inp);
+      return inp;
+    });
+  });
+
+  cellparBtn.addEventListener("click", () => {
+    if (cellMode === "cellpar") return;
+    cellMode = "cellpar";
+    cellparBtn.classList.add("active"); matrixBtn.classList.remove("active");
+    cellGrid.hidden = false; matrixGrid.hidden = true;
+  });
+  matrixBtn.addEventListener("click", () => {
+    if (cellMode === "matrix") return;
+    cellMode = "matrix";
+    matrixBtn.classList.add("active"); cellparBtn.classList.remove("active");
+    matrixGrid.hidden = false; cellGrid.hidden = true;
+  });
 
   // PBC checkboxes
   const pbcRow = document.createElement("div");
@@ -121,12 +173,22 @@ function render({ model, el }) {
   const setCellBtn = btn("Set cell", "ce-btn--primary ce-btn--full");
   setCellBtn.style.marginTop = "4px";
   setCellBtn.addEventListener("click", () => {
-    sendOp("set_cell", {
-      cellpar: [parseFloat(aIn.value), parseFloat(bIn.value), parseFloat(cIn.value),
-                parseFloat(alIn.value), parseFloat(beIn.value), parseFloat(gaIn.value)],
-      pbc: pbcChecks.map(c => c.checked),
-      scale_atoms: scaleAtomsCb.checked,
-    });
+    const pbc = pbcChecks.map(c => c.checked);
+    const scale_atoms = scaleAtomsCb.checked;
+    if (cellMode === "matrix") {
+      sendOp("set_cell", {
+        cell_matrix: matrixInputs.map(row => row.map(inp => parseFloat(inp.value) || 0)),
+        pbc,
+        scale_atoms,
+      });
+    } else {
+      sendOp("set_cell", {
+        cellpar: [parseFloat(aIn.value), parseFloat(bIn.value), parseFloat(cIn.value),
+                  parseFloat(alIn.value), parseFloat(beIn.value), parseFloat(gaIn.value)],
+        pbc,
+        scale_atoms,
+      });
+    }
   });
   root.appendChild(setCellBtn);
 
@@ -140,6 +202,11 @@ function render({ model, el }) {
     beIn.value = round(be, 4);
     gaIn.value = round(ga, 4);
     atoms.pbc.forEach((v, i) => { pbcChecks[i].checked = v; });
+    if (atoms.cell) {
+      matrixInputs.forEach((row, i) => row.forEach((inp, j) => {
+        inp.value = round(atoms.cell[i][j], 8);
+      }));
+    }
   }
 
   // ── section 2: sites ───────────────────────────────────────────────────────
@@ -307,19 +374,43 @@ function render({ model, el }) {
   opRow("Wrap PBC", [], () => sendOp("wrap", {}));
 
   // Center
-  const vacIn      = numInput(0, "0.1", "0", "60px");
-  vacIn.title      = "Vacuum Å";
-  vacIn.placeholder = "vac Å";
+  function subLabel(text) {
+    const s = document.createElement("span");
+    s.className = "ce-sublabel";
+    s.textContent = text;
+    return s;
+  }
+
   const axSel = document.createElement("select");
   axSel.className = "ce-select";
-  axSel.style.width = "64px";
+  axSel.style.width = "56px";
   [["all","All"], ["0","x"], ["1","y"], ["2","z"]].forEach(([v,t]) => {
     const o = document.createElement("option"); o.value = v; o.textContent = t;
     axSel.appendChild(o);
   });
-  opRow("Center", [vacIn, axSel], () => {
+
+  const vacIn = numInput("", "0.1", "0", "68px");
+  vacIn.placeholder = "none";
+  vacIn.title = "Add this many Å of vacuum on each side along the selected axis. Leave blank to only shift atoms without changing the cell size.";
+
+  const aboutIn = textInput("", "x,y,z", "90px");
+  aboutIn.title = "Centre atoms about this point. Enter a single number (e.g. 0) or three comma-separated values (e.g. 0,0,0). Leave blank to centre about the cell midpoint.";
+
+  opRow("Center", [
+    subLabel("Axis:"), axSel,
+    subLabel("Add vac (\u00c5/side):"), vacIn,
+    subLabel("About:"), aboutIn,
+  ], () => {
     const axis = axSel.value === "all" ? [0,1,2] : [parseInt(axSel.value)];
-    sendOp("center", { vacuum: parseFloat(vacIn.value)||0, axis });
+    const vacuum = vacIn.value.trim() !== "" ? parseFloat(vacIn.value) : null;
+    const aboutStr = aboutIn.value.trim();
+    let about = null;
+    if (aboutStr !== "") {
+      const parts = aboutStr.split(/[\s,]+/).map(Number).filter(v => !isNaN(v));
+      if (parts.length === 1) about = [parts[0], parts[0], parts[0]];
+      else if (parts.length === 3) about = parts;
+    }
+    sendOp("center", { vacuum, axis, about });
   });
 
   // Repeat
@@ -389,8 +480,13 @@ function render({ model, el }) {
   }
 
   function sendOp(name, params) {
-    // Send current site edits along with an operation
-    sendCurrentState({ name, params });
+    // Send the operation via a dedicated op_json traitlet so that atoms_json
+    // is never set to an op-only payload.  The change:atoms_json listener
+    // (syncFromModel) would otherwise fire with data that has no "symbols"
+    // key and crash before Python has had a chance to respond.
+    model.set("op_json", JSON.stringify({ name, params }));
+    model.set("atoms_trigger", model.get("atoms_trigger") + 1);
+    model.save_changes();
   }
 
   // ── sync from Python ────────────────────────────────────────────────────────
