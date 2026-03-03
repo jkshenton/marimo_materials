@@ -2,7 +2,7 @@
 # requires-python = ">=3.10"
 # dependencies = [
 #     "marimo>=0.18.0",
-#     "marimo_materials[crystal]==0.1.0a0",
+#     "marimo_materials[crystal]==0.1.0a1",
 # ]
 # ///
 
