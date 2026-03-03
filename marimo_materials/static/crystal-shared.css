@@ -1,0 +1,46 @@
+/* Shared colour tokens for all crystal-materials widgets.
+   This file is prepended to each widget's own CSS by the Python module. */
+
+.cb-root,
+.cu-root,
+.cd-root,
+.ce-root {
+  --cx-accent:          #5b8dee;
+  --cx-accent-hover:    #4278e0;
+  --cx-bg-input:        #fff;
+  --cx-bd:              #ddd;
+  --cx-bd-subtle:       #eee;
+  --cx-fg-muted:        #999;
+  --cx-fg-dim:          #666;
+  --cx-danger:          #c92a2a;
+  --cx-danger-bg:       #fff5f5;
+  --cx-danger-bd:       #fa5252;
+  --cx-ok:              #2f9e44;
+  --cx-ok-bg:           #ebfbee;
+}
+
+.dark .cb-root,
+.dark .cu-root,
+.dark .cd-root,
+.dark .ce-root,
+.dark-theme .cb-root,
+.dark-theme .cu-root,
+.dark-theme .cd-root,
+.dark-theme .ce-root,
+[data-theme="dark"] .cb-root,
+[data-theme="dark"] .cu-root,
+[data-theme="dark"] .cd-root,
+[data-theme="dark"] .ce-root {
+  --cx-accent:          #7b9ef5;
+  --cx-accent-hover:    #4278e0;
+  --cx-bg-input:        #232336;
+  --cx-bd:              #444;
+  --cx-bd-subtle:       #333;
+  --cx-fg-muted:        #666;
+  --cx-fg-dim:          #888;
+  --cx-danger:          #ff8787;
+  --cx-danger-bg:       #2e1a1a;
+  --cx-danger-bd:       #fa5252;
+  --cx-ok:              #69db7c;
+  --cx-ok-bg:           #1a2e1c;
+}

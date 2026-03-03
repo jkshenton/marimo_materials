@@ -1,11 +1,23 @@
 .cu-root {
+  /* widget-specific vars */
+  --cu-bd-zone:      #c0c0c0;
+  --cu-bg-zone:      #fafafa;
+  --cu-hover-bg:     #edf2ff;
+
   font-family: system-ui, sans-serif;
   max-width: 440px;
-  color-scheme: light dark;
+}
+
+.dark .cu-root,
+.dark-theme .cu-root,
+[data-theme="dark"] .cu-root {
+  --cu-bd-zone:      #444;
+  --cu-bg-zone:      #1e1e2e;
+  --cu-hover-bg:     #252540;
 }
 
 .cu-dropzone {
-  border: 2px dashed #c0c0c0;
+  border: 2px dashed var(--cu-bd-zone);
   border-radius: 8px;
   padding: 28px 20px;
   cursor: pointer;
@@ -15,19 +27,19 @@
   align-items: center;
   gap: 8px;
   transition: border-color 0.15s, background 0.15s;
-  background: #fafafa;
-  color: #555;
+  background: var(--cu-bg-zone);
+  color: inherit;
 }
 
 .cu-dropzone:hover,
 .cu-dropzone--hover {
-  border-color: #5b8dee;
-  background: #edf2ff;
+  border-color: var(--cx-accent);
+  background: var(--cu-hover-bg);
 }
 
 .cu-dropzone--loaded {
   border-style: solid;
-  border-color: #40c057;
+  border-color: var(--cx-ok);
 }
 
 .cu-icon {
@@ -44,8 +56,8 @@
   margin-top: 8px;
   padding: 6px 10px;
   border-radius: 5px;
-  background: #ebfbee;
-  color: #2f9e44;
+  background: var(--cx-ok-bg);
+  color: var(--cx-ok);
 }
 
 .cu-controls {
@@ -64,16 +76,16 @@
   font-weight: 600;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  color: #888;
+  color: var(--cx-fg-muted);
 }
 
 .cu-input {
-  border: 1px solid #ddd;
+  border: 1px solid var(--cx-bd);
   border-radius: 4px;
   padding: 5px 8px;
   font-size: 13px;
   width: 140px;
-  background: #fff;
+  background: var(--cx-bg-input);
   color: inherit;
   outline: none;
   transition: border-color 0.12s;
@@ -92,7 +104,7 @@
 }
 
 .cu-input:focus {
-  border-color: #5b8dee;
+  border-color: var(--cx-accent);
 }
 
 .cu-parse-btn {
@@ -102,7 +114,7 @@
   padding: 7px 0;
   border-radius: 5px;
   border: none;
-  background: #5b8dee;
+  background: var(--cx-accent);
   color: #fff;
   font-size: 13px;
   font-weight: 600;
@@ -116,16 +128,16 @@
 }
 
 .cu-parse-btn:hover {
-  background: #4278e0;
+  background: var(--cx-accent-hover);
 }
 
 .cu-error {
   margin-top: 10px;
   padding: 8px 12px;
   border-radius: 5px;
-  background: #fff5f5;
-  color: #c92a2a;
-  border-left: 3px solid #fa5252;
+  background: var(--cx-danger-bg);
+  color: var(--cx-danger);
+  border-left: 3px solid var(--cx-danger-bd);
   font-size: 12px;
   font-family: monospace;
   display: flex;
@@ -137,55 +149,4 @@
 .cu-error-icon {
   font-size: 14px;
   flex-shrink: 0;
-}
-
-@media (prefers-color-scheme: dark) {
-  .cu-dropzone {
-    background: #1e1e2e;
-    border-color: #444;
-    color: #bbb;
-  }
-
-  .cu-dropzone:hover,
-  .cu-dropzone--hover {
-    border-color: #7b9ef5;
-    background: #252540;
-  }
-
-  .cu-dropzone--loaded {
-    border-color: #40c057;
-  }
-
-  .cu-fileinfo {
-    background: #1a2e1d;
-    color: #69db7c;
-  }
-
-  .cu-input {
-    background: #2a2a3e;
-    border-color: #555;
-    color: #eee;
-  }
-
-  .cu-input:focus {
-    border-color: #7b9ef5;
-  }
-
-  .cu-field {
-    color: #888;
-  }
-
-  .cu-parse-btn {
-    background: #4278e0;
-  }
-
-  .cu-parse-btn:hover {
-    background: #5b8dee;
-  }
-
-  .cu-error {
-    background: #2e1a1a;
-    color: #ff8787;
-    border-color: #fa5252;
-  }
 }

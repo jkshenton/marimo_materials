@@ -78,7 +78,7 @@ class CrystalDownloadWidget(anywidget.AnyWidget):
     """
 
     _esm = _STATIC / "crystal-download.js"
-    _css = _STATIC / "crystal-download.css"
+    _css = (_STATIC / "crystal-shared.css").read_text() + (_STATIC / "crystal-download.css").read_text()
 
     # User-selectable (bidirectional)
     format: str = traitlets.Unicode("cif").tag(sync=True)

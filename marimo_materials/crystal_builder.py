@@ -37,7 +37,7 @@ import anywidget
 import traitlets
 
 _STATIC = Path(__file__).parent / "static"
-_CSS = _STATIC / "crystal-builder.css"
+_CSS = (_STATIC / "crystal-shared.css").read_text() + (_STATIC / "crystal-builder.css").read_text()
 
 
 # ── shared helpers ────────────────────────────────────────────────────────────

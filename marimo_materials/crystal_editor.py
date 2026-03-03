@@ -162,7 +162,7 @@ class CrystalEditorWidget(anywidget.AnyWidget):
     """
 
     _esm = Path(__file__).parent / "static" / "crystal-editor.js"
-    _css = Path(__file__).parent / "static" / "crystal-editor.css"
+    _css = (Path(__file__).parent / "static" / "crystal-shared.css").read_text() + (Path(__file__).parent / "static" / "crystal-editor.css").read_text()
 
     # Synced with JS
     atoms_json:    str = traitlets.Unicode("").tag(sync=True)

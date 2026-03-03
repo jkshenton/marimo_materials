@@ -61,7 +61,7 @@ class CrystalUploadWidget(anywidget.AnyWidget):
     """
 
     _esm = Path(__file__).parent / "static" / "crystal-upload.js"
-    _css = Path(__file__).parent / "static" / "crystal-upload.css"
+    _css = (Path(__file__).parent / "static" / "crystal-shared.css").read_text() + (Path(__file__).parent / "static" / "crystal-upload.css").read_text()
 
     # Synced with the JS widget
     filename: str = traitlets.Unicode("").tag(sync=True)
