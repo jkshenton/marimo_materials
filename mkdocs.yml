@@ -1,4 +1,4 @@
-site_name: marimo_materials
+site_name: Marimo Materials
 site_description: Creative AnyWidgets for notebooks
 site_url: https://jkshenton.github.io/marimo_materials
 repo_url: https://github.com/jkshenton/marimo_materials
@@ -7,8 +7,8 @@ docs_dir: mkdocs
 site_dir: site
 theme:
   name: material
-  logo: assets/logo.png
-  favicon: assets/logo.png
+  logo: assets/perovskite-dark.svg
+  favicon: assets/perovskite-favicon.svg
   icon:
     repo: fontawesome/brands/github
   features:
@@ -23,9 +23,18 @@ theme:
     - search.highlight
     - navigation.instant
   palette:
-    scheme: default
-    primary: grey
-    accent: blue grey
+    - scheme: default
+      primary: custom
+      accent: teal
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: custom
+      accent: teal
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
   font:
     text: "PT Sans"
     code: "Fira Mono"
@@ -39,6 +48,9 @@ nav:
       - CrystalDownloadWidget: reference/crystal-download.md
       - Crystal Builders: reference/crystal-builder.md
       - show_atoms: reference/show-atoms.md
+hooks:
+  - scripts/mkdocs_hooks.py
+
 plugins:
   - search
   - section-index
@@ -83,10 +95,12 @@ markdown_extensions:
       emoji_generator: !!python/name:pymdownx.emoji.to_svg
 extra_css:
   - assets/stylesheets/extra.css
+extra_javascript:
+  - assets/gallery-lightbox.js
 extra:
   social:
     - icon: fontawesome/brands/github
-      link: https://github.com/vdamario/marimo_materials
+      link: https://github.com/jkshenton/marimo_materials
       name: GitHub
     - icon: material/notebook
       link: https://marimo.io/gallery

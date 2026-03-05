@@ -78,3 +78,57 @@ atoms = widget.widget.atoms   # ase.Atoms, or None on failure
 | `vacuum` | `float` | Vacuum padding in Å. |
 | `error` | `str` | Empty on success; error message on failure. |
 | `n_atoms` | `int` | Atom count; 0 on failure. |
+
+---
+
+## Usage
+
+All four builders share the same pattern: wrap in `mo.ui.anywidget`, then read `.widget.atoms` in a downstream cell.
+
+```python
+import marimo as mo
+from marimo_materials import (
+    BulkBuilderWidget,
+    SurfaceBuilderWidget,
+    NanoparticleBuilderWidget,
+    MoleculeBuilderWidget,
+    CrystalViewer,
+    show_atoms,
+)
+```
+
+### Bulk crystal
+
+```python
+bulk_w = mo.ui.anywidget(BulkBuilderWidget())
+bulk_w
+```
+
+```python
+atoms = bulk_w.widget.atoms
+if atoms and not bulk_w.widget.error:
+    cv = CrystalViewer(height="400px")
+    cv.from_ase(atoms)
+    mo.vstack([show_atoms(atoms, mo), cv.weas])
+```
+
+### Surface slab
+
+```python
+surface_w = mo.ui.anywidget(SurfaceBuilderWidget())
+surface_w
+```
+
+### Nanoparticle
+
+```python
+nano_w = mo.ui.anywidget(NanoparticleBuilderWidget())
+nano_w
+```
+
+### Molecule
+
+```python
+mol_w = mo.ui.anywidget(MoleculeBuilderWidget())
+mol_w
+```

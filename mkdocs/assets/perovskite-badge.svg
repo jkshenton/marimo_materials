@@ -1,0 +1,40 @@
+<svg width="256" height="256" viewBox="0 0 256 256" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- App badge background -->
+  <rect width="256" height="256" rx="56" fill="#0c1020"/>
+  <!-- equatorial square bonds -->
+  <line x1="128" y1="60" x2="196" y2="128" stroke="#5b8af8" stroke-width="2.6" stroke-opacity=".5"/>
+  <line x1="196" y1="128" x2="128" y2="196" stroke="#5b8af8" stroke-width="2.6" stroke-opacity=".5"/>
+  <line x1="128" y1="196" x2="60" y2="128" stroke="#5b8af8" stroke-width="2.6" stroke-opacity=".5"/>
+  <line x1="60" y1="128" x2="128" y2="60" stroke="#5b8af8" stroke-width="2.6" stroke-opacity=".5"/>
+  <!-- apical bonds -->
+  <line x1="128" y1="16" x2="128" y2="60" stroke="#3df0c2" stroke-width="2.6" stroke-opacity=".5"/>
+  <line x1="128" y1="240" x2="128" y2="196" stroke="#3df0c2" stroke-width="2.6" stroke-opacity=".5"/>
+  <!-- apical cross bonds -->
+  <line x1="128" y1="16" x2="196" y2="128" stroke="#3df0c2" stroke-width="2" stroke-opacity=".2"/>
+  <line x1="128" y1="16" x2="60" y2="128" stroke="#3df0c2" stroke-width="2" stroke-opacity=".2"/>
+  <line x1="128" y1="240" x2="196" y2="128" stroke="#3df0c2" stroke-width="2" stroke-opacity=".2"/>
+  <line x1="128" y1="240" x2="60" y2="128" stroke="#3df0c2" stroke-width="2" stroke-opacity=".2"/>
+  <!-- face shading -->
+  <polygon points="128,16 196,128 128,128" fill="rgba(91,138,248,.06)"/>
+  <polygon points="128,16 60,128 128,128" fill="rgba(61,240,194,.04)"/>
+  <polygon points="128,240 196,128 128,128" fill="rgba(91,138,248,.04)"/>
+  <polygon points="128,240 60,128 128,128" fill="rgba(61,240,194,.06)"/>
+  <!-- equatorial O atoms -->
+  <circle cx="128" cy="60" r="11" fill="#0c1020" stroke="#5b8af8" stroke-width="3"/>
+  <circle cx="128" cy="60" r="4.5" fill="#5b8af8"/>
+  <circle cx="196" cy="128" r="11" fill="#0c1020" stroke="#5b8af8" stroke-width="3"/>
+  <circle cx="196" cy="128" r="4.5" fill="#5b8af8"/>
+  <circle cx="128" cy="196" r="11" fill="#0c1020" stroke="#5b8af8" stroke-width="3"/>
+  <circle cx="128" cy="196" r="4.5" fill="#5b8af8"/>
+  <circle cx="60" cy="128" r="11" fill="#0c1020" stroke="#5b8af8" stroke-width="3"/>
+  <circle cx="60" cy="128" r="4.5" fill="#5b8af8"/>
+  <!-- apical O atoms -->
+  <circle cx="128" cy="16" r="11" fill="#0c1020" stroke="#3df0c2" stroke-width="3"/>
+  <circle cx="128" cy="16" r="4.5" fill="#3df0c2"/>
+  <circle cx="128" cy="240" r="11" fill="#0c1020" stroke="#3df0c2" stroke-width="3"/>
+  <circle cx="128" cy="240" r="4.5" fill="#3df0c2"/>
+  <!-- center B-site nucleus -->
+  <circle cx="128" cy="128" r="22" fill="rgba(91,138,248,.1)"/>
+  <circle cx="128" cy="128" r="15" fill="#0c1020" stroke="#5b8af8" stroke-width="4"/>
+  <circle cx="128" cy="128" r="6.5" fill="#5b8af8"/>
+</svg>

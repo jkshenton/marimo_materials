@@ -64,7 +64,7 @@ def _(bulk_widget, mo):
     else:
         _cv = _CrystalViewer(height="400px")
         _cv.from_ase(_atoms)
-        _result = mo.vstack([_show_atoms(_atoms, mo), _cv.weas])
+        _result = mo.vstack([_cv.weas, _show_atoms(_atoms, mo)])
     _result
     return
 
@@ -100,7 +100,7 @@ def _(mo, surface_widget):
     else:
         _cv = _CrystalViewer(height="400px")
         _cv.from_ase(_atoms)
-        _result = mo.vstack([_show_atoms(_atoms, mo), _cv.weas])
+        _result = mo.vstack([_cv.weas, _show_atoms(_atoms, mo)])
     _result
     return
 
@@ -136,7 +136,7 @@ def _(mo, nano_widget):
     else:
         _cv = _CrystalViewer(height="400px")
         _cv.from_ase(_atoms)
-        _result = mo.vstack([_show_atoms(_atoms, mo), _cv.weas])
+        _result = mo.vstack([_cv.weas, _show_atoms(_atoms, mo)])
     _result
     return
 
@@ -172,7 +172,7 @@ def _(mo, mol_widget):
     else:
         _cv = _CrystalViewer(height="400px")
         _cv.from_ase(_atoms)
-        _result = mo.vstack([_show_atoms(_atoms, mo), _cv.weas])
+        _result = mo.vstack([_cv.weas, _show_atoms(_atoms, mo)])
     _result
     return
 

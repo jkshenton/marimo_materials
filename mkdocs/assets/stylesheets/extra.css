@@ -1,18 +1,71 @@
 :root {
   --wiggly-demo-border: color-mix(in srgb, var(--md-sys-color-outline) 70%, transparent);
   --wiggly-button-border: color-mix(in srgb, var(--md-sys-color-outline) 85%, transparent);
+
+  /* Lightbox – always sits on a dark backdrop so these stay dark-mode-style */
+  --lb-backdrop:          rgba(0, 0, 0, 0.88);
+  --lb-caption-bg:        color-mix(in srgb, var(--md-primary-fg-color) 80%, transparent);
+  --lb-fg:                var(--md-primary-bg-color);
+  --lb-fg-dim:            color-mix(in srgb, var(--md-primary-bg-color) 55%, transparent);
+  --lb-arrow-bg:          color-mix(in srgb, var(--md-primary-bg-color) 12%, transparent);
+  --lb-arrow-border:      color-mix(in srgb, var(--md-primary-bg-color) 20%, transparent);
+  --lb-arrow-bg-hover:    color-mix(in srgb, var(--md-primary-bg-color) 28%, transparent);
+  --lb-arrow-border-hover:color-mix(in srgb, var(--md-primary-bg-color) 50%, transparent);
 }
 
+/* ── Light mode ──────────────────────────────────────────────────────────── */
+body[data-md-color-scheme="default"],
 [data-md-color-scheme="default"] {
-  --md-primary-fg-color: #111111;
-  --md-accent-fg-color: #5f6368;
-  --md-default-bg-color: #f8f9fa;
+  --md-primary-fg-color:             #1a2540;
+  --md-primary-fg-color--light:      #2e3f6e;
+  --md-primary-fg-color--dark:       #111929;
+  --md-primary-bg-color:             #ffffff;
+  --md-primary-bg-color--light:      rgba(255,255,255,0.7);
+  --md-accent-fg-color:              #0d7c66;
+  --md-accent-fg-color--transparent: rgba(13,124,102,0.1);
+  --md-default-bg-color:             #f5f3ef;
+  --md-default-fg-color:             #1a2540;
+  --md-default-fg-color--light:      rgba(26,37,64,0.72);
+  --md-default-fg-color--lighter:    rgba(26,37,64,0.42);
+  --md-default-fg-color--lightest:   rgba(26,37,64,0.12);
+  --md-code-bg-color:                #eceae5;
+  --md-typeset-a-color:              #0d7c66;
 }
 
+/* ── Dark mode ───────────────────────────────────────────────────────────── */
+body[data-md-color-scheme="slate"],
 [data-md-color-scheme="slate"] {
-  --md-primary-fg-color: #f4f4f4;
-  --md-accent-fg-color: #aeb0b5;
-  --md-default-bg-color: #121212;
+  /* primary-fg = header/tabs BACKGROUND; primary-bg = text ON that background */
+  --md-primary-fg-color:             #151c2e;
+  --md-primary-fg-color--light:      #1e2a42;
+  --md-primary-fg-color--dark:       #0d1424;
+  --md-primary-bg-color:             #e8edf5;
+  --md-primary-bg-color--light:      rgba(232,237,245,0.7);
+  --md-accent-fg-color:              #26a69a;
+  --md-accent-fg-color--transparent: rgba(38,166,154,0.1);
+  --md-default-bg-color:             #0f1117;
+  --md-default-fg-color:             #dce3ef;
+  --md-default-fg-color--light:      rgba(220,227,239,0.72);
+  --md-default-fg-color--lighter:    rgba(220,227,239,0.42);
+  --md-default-fg-color--lightest:   rgba(220,227,239,0.12);
+  --md-code-bg-color:                #161b27;
+  --md-typeset-a-color:              #26a69a;
+}
+
+/* Explicit colour rules so nothing can override the custom dark palette */
+body[data-md-color-scheme="slate"] {
+  color:            #dce3ef;
+  background-color: #0f1117;
+}
+
+body[data-md-color-scheme="slate"] .md-typeset {
+  color: #dce3ef;
+}
+
+body[data-md-color-scheme="slate"] .md-content,
+body[data-md-color-scheme="slate"] .md-sidebar,
+body[data-md-color-scheme="slate"] .md-nav {
+  background-color: #0f1117;
 }
 
 .demo-frame {
@@ -52,15 +105,24 @@
 
 [data-md-color-scheme="slate"] .md-typeset .md-button {
   color: var(--md-accent-fg-color);
-  background-color: color-mix(in srgb, #1e1f20 85%, transparent);
+  background-color: color-mix(in srgb, #161b27 85%, transparent);
 }
 
 [data-md-color-scheme="slate"] .md-typeset .md-button:hover {
   border-color: color-mix(in srgb, var(--md-accent-fg-color) 60%, transparent);
-  background-color: color-mix(in srgb, var(--md-accent-fg-color) 10%, #1e1f20);
+  background-color: color-mix(in srgb, var(--md-accent-fg-color) 10%, #161b27);
 }
-[data-md-component="header"] .md-header__button.md-logo img {
-  filter: brightness(0) invert(1);
+/* Logo is already light-coloured (perovskite-dark.svg) – no filter needed */
+.md-header__button.md-logo img,
+.md-header__button.md-logo svg {
+  height: 2.4rem;
+  width:  2.4rem;
+}
+
+/* Keep the header/nav dark navy in dark mode */
+[data-md-color-scheme="slate"] .md-header,
+[data-md-color-scheme="slate"] .md-tabs {
+  background-color: #151c2e;
 }
 
 /* Widget Gallery */
@@ -105,7 +167,7 @@
 .gallery-item .gallery-title {
   font-size: 0.75rem;
   font-weight: 600;
-  color: var(--md-primary-fg-color);
+  color: var(--md-default-fg-color);
   padding: 0.5rem 0.75rem;
   border-bottom: 1px solid var(--wiggly-demo-border);
 }
@@ -141,4 +203,123 @@
 
 .gallery-links a:hover {
   background-color: color-mix(in srgb, var(--md-accent-fg-color) 15%, transparent);
+}
+
+/* ── Gallery lightbox ──────────────────────────────────────────────────── */
+.lb-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  align-items: center;
+  justify-content: center;
+}
+
+.lb-backdrop {
+  position: absolute;
+  inset: 0;
+  background: var(--lb-backdrop);
+  backdrop-filter: blur(4px);
+}
+
+.lb-dialog {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: min(90vw, 960px);
+}
+
+.lb-video {
+  width: 100%;
+  max-height: 75vh;
+  border-radius: 0.5rem;
+  background: #000;
+  display: block;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.6);
+}
+
+.lb-caption {
+  margin-top: 0.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0.5rem 1rem;
+  background: var(--lb-caption-bg);
+  border-radius: 0.5rem;
+  backdrop-filter: blur(6px);
+}
+
+.lb-title {
+  color: var(--lb-fg);
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  transition: color 0.15s;
+}
+
+.lb-title[href]:hover {
+  color: var(--md-accent-fg-color);
+  text-decoration: underline;
+}
+
+.lb-index {
+  color: var(--lb-fg-dim);
+  font-size: 0.8rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.lb-close {
+  position: absolute;
+  top: -2.75rem;
+  right: 0;
+  background: none;
+  border: none;
+  color: var(--lb-fg);
+  font-size: 2rem;
+  line-height: 1;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity 0.15s;
+  padding: 0;
+}
+
+.lb-close:hover { opacity: 1; }
+
+.lb-arrow {
+  position: absolute;
+  top: calc(50% - 1.5rem); /* vertically centred on the video */
+  background: var(--lb-arrow-bg);
+  border: 1px solid var(--lb-arrow-border);
+  color: var(--lb-fg);
+  font-size: 1.25rem;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s, border-color 0.15s;
+  line-height: 1;
+}
+
+.lb-arrow:hover {
+  background: var(--lb-arrow-bg-hover);
+  border-color: var(--lb-arrow-border-hover);
+}
+
+.lb-prev { left: -3.75rem; }
+.lb-next { right: -3.75rem; }
+
+@media (max-width: 680px) {
+  .lb-prev { left: 0.4rem; }
+  .lb-next { right: 0.4rem; }
+  .lb-arrow {
+    background: rgba(0, 0, 0, 0.45);
+    border-color: var(--lb-arrow-border);
+  }
 }
