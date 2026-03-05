@@ -1,6 +1,6 @@
 [project]
 name = "marimo_materials"
-version = "0.1.0a1"
+version = "0.1.0a2"
 description = "Collection of Anywidget Widgets"
 readme = "README.md"
 requires-python = ">=3.10"
@@ -17,6 +17,7 @@ classifiers = [
 dependencies = [
     "anywidget>=0.9.2",
     "drawdata",
+    "marimo>=0.18.2",
     "numpy",
     "pillow",
     "python-dotenv>=1.2.1",
